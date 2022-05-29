@@ -37,7 +37,7 @@ const EditProduct = () => {
     });
   };
 
-  const handleAddproduct = (e) => {
+  const handleUpdate = (e) => {
     console.log(dataProduct);
     e.preventDefault();
     axios.put(`http://localhost:4000/v1/products/${id}`, dataProduct)
@@ -74,7 +74,7 @@ const EditProduct = () => {
         <section>
           <div className="container-fluid">
             <div className="row">
-              <form onSubmit={handleAddproduct}>
+              <form onSubmit={handleUpdate}>
                 <div className={"col-4 col-xl-4 text-end position-relative " + styles.menu}>
                   <div className={"d-flex " + styles.menuHeader + " ms-5 mt-5 justify-content-center"}>
                     <div>

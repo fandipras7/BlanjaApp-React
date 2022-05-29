@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { NavLink, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../../component/base/Button";
 import Navbar from "../../component/module/navbar";
 import styles from "./home.module.css";
@@ -8,16 +8,25 @@ import axios from "axios";
 
 const Home = () => {
   const navigate = useNavigate()
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState('');
+  let [searchParams, setSearchParams] = useSearchParams({});
+  
+  const handleSearch = () => {
+    setSearchParams({search: search})
+  }
+
   function moveToDetailProduct(id) {
     navigate(`/Product/${id}`)
   }
-  const [products, setProducts] = useState([]);
+
+  
   async function fetchData() {
     try {
       const result = await axios({
         method: "GET",
         baseURL: "http://localhost:4000/v1",
-        url: "/products?page=1&limit=10",
+        url: `products?${searchParams}` /*"/products?page=1&limit=10"*/,
       });
       // console.log(result.data.data[5].photo);
       setProducts(result.data.data);
@@ -26,13 +35,23 @@ const Home = () => {
     }
   }
 
+  const deleteProduct = (id) =>{
+    axios.delete(`http://localhost:4000/v1/products/${id}`)
+    .then(()=>{
+      alert('delete success')
+      fetchData()
+      navigate('/Home')
+    })
+  }
+
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [searchParams]);
   return (
     <div>
-      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true}></Navbar>
+      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e)=>setSearch(e.target.value)}></Navbar>
       <main>
+        <p>{searchParams}</p>
         <section className={styles.caraousell}>
           <div className="container">
             <div className="row" justify-content-center mt-4>
@@ -135,7 +154,7 @@ const Home = () => {
                   </Card>
                   <div className="editDelete">
                     <Button onClick={()=>navigate(`/Edit/${item.id}`)}>Edit</Button>
-                    <Button>Delete</Button>
+                    <Button onClick={()=>deleteProduct(item.id)}>Delete</Button>
                   </div>
                 </div>
               ))}
