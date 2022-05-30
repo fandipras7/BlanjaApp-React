@@ -6,6 +6,7 @@ import Button from "../../base/Button";
 import sortPic from "./img/sort.png";
 import cartPic from "./img/cart.png";
 import logo from "./img/logoBlanja.png";
+import searchImg from "./img/search.png"
 
 const Navbar = ({ className, home, onChange, onClickButton }) => {
   const [tampilkan, setTampilkan] = useState("");
@@ -16,9 +17,9 @@ const Navbar = ({ className, home, onChange, onClickButton }) => {
           <img src={logo} alt="" width="32" height="44" class="me-2" />
           <h5 className="mt-2">Blanja</h5>
         </div>
-        <form className="d-flex searchAndSort ms-auto">
+        <form className={"d-flex ms-auto " + styles.searchAndSort}>
           <Input className={`${styles.form_control} me-2`} type="search" onChange={onChange} placeholder="Search"></Input>
-          <Button onClick={onClickButton} type="button" >Search</Button>
+          <Button className={styles.btnSearch} onClick={onClickButton} type="button" border="none" backgroundColor="white" ><img src={searchImg} alt=""/></Button>
           <Button className="btn btn-light me-2" height="40px" type="submit">
             <img src={sortPic} alt="" />
           </Button>

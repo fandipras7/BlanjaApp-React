@@ -9,9 +9,9 @@ import React from "react";
 //   );
 // };
 
-const Button = ({ border, children, ...props }) => {
+const Button = ({backgroundColor, border, children, ...props }) => {
   return (
-    <button style={{ border: border, width: props.width, height: props.height }} {...props}>
+    <button style={{ border: border, width: props.width, height: props.height, backgroundColor:backgroundColor }} {...props}>
       {children ? children : props.title}
     </button>
   );

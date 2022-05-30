@@ -112,3 +112,9 @@ hr {
   width: 160px;
   border: none;
 }
+
+@media screen and (max-width: 992px) {
+  .select {
+    width: 70%;
+  }
+}

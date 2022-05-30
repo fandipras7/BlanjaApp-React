@@ -5,6 +5,16 @@ import styles from "./product.module.css";
 import Button from "../../component/base/Button";
 import axios from "axios";
 
+// images
+import mainPhoto from "./image/bajubesar.png"
+import p1 from "./image/b1.png"
+import p2 from "./image/b2.png"
+import p3 from "./image/b3.png"
+import p4 from "./image/b4.png"
+import p5 from "./image/b5.png"
+import minus from "./image/minus.png"
+import plus from "./image/plus.png"
+
 const Product = () => {
   const {id} = useParams()
   // console.log(id);
@@ -37,24 +47,24 @@ const Product = () => {
               <div className="col-12 col-lg-4 mt-5">
                 <div className="row">
                   <div className="col">
-                    <img src="./images/product/bajubesar.png" className="w-100" alt="" />
+                    <img src={mainPhoto} className="w-100" alt="" />
                   </div>
                 </div>
                 <div className="row row-cols-5 mt-2">
                   <div className="col">
-                    <img src="./images/product/b1.png" className="img-fluid" alt="baju1" />
+                    <img src={p1} className="img-fluid" alt="baju1" />
                   </div>
                   <div className="col">
-                    <img src="./images/product/b2.png" className="img-fluid" alt="baju1" />
+                    <img src={p2} className="img-fluid" alt="baju1" />
+                  </div>
+                  <div className={"col"}>
+                    <img src={p3} className="img-fluid" alt="baju1" />
                   </div>
                   <div className="col">
-                    <img src="./images/product/b3.png" className="img-fluid" alt="baju1" />
+                    <img src={p4} className="img-fluid" alt="baju1" />
                   </div>
                   <div className="col">
-                    <img src="./images/product/b4.png" className="img-fluid" alt="baju1" />
-                  </div>
-                  <div className="col">
-                    <img src="./images/product/b5.png" className="img-fluid" alt="baju1" />
+                    <img src={p5} className="img-fluid" alt="baju1" />
                   </div>
                 </div>
               </div>
@@ -109,13 +119,13 @@ const Product = () => {
                     <div className="d-flex">
                       <div className={"d-flex justify-content-center align-items-center " + styles.color_circle + " " + styles.grey}>
                         <Button border="none" className="btn">
-                          <img src="./images/product/minus.png" alt="" />
+                          <img src={minus} alt="" />
                         </Button>
                       </div>
                       <p class="ms-2 me-2 mt-1">28</p>
                       <div class={"d-flex justify-content-center align-items-center " + styles.color_circle + " " + styles.white}>
                         <Button border="none" className="btn">
-                          <img src="./images/product/plus.png" alt="" />
+                          <img src={plus} alt="" />
                         </Button>
                       </div>
                     </div>
@@ -125,13 +135,13 @@ const Product = () => {
                     <div class="d-flex">
                       <div class={"d-flex justify-content-center align-items-center " + styles.color_circle + " " + styles.grey}>
                         <Button border="none" className="btn">
-                          <img src="./images/product/minus.png" alt="" />
+                          <img src={minus} alt="" />
                         </Button>
                       </div>
                       <p class="ms-2 me-2 mt-1">28</p>
                       <div class={"d-flex justify-content-center align-items-center " + styles.color_circle + " " + styles.white}>
                         <Button border="none" className="btn">
-                          <img src="./images/product/plus.png" alt="" />
+                          <img src={plus} alt="" />
                         </Button>
                       </div>
                     </div>

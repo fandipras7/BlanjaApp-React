@@ -55,8 +55,7 @@ const Selling = (id) => {
         <section>
           <div className="container-fluid">
             <div className="row">
-              <form onSubmit={handleAddproduct}>
-                <div className={"col-4 col-xl-4 text-end position-relative " + styles.menu}>
+                <div className={"col-12 col-xl-4 text-end position-relative " + styles.menu}>
                   <div className={"d-flex " + styles.menuHeader + " ms-5 mt-5 justify-content-center"}>
                     <div>
                       <img src="./images/selling/person.png" alt="fp" />
@@ -102,7 +101,8 @@ const Selling = (id) => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-7 bg-light column-form">
-                  <div className="form-seller d-flex flex-column ms-5 mt-5">
+                <form onSubmit={handleAddproduct}> 
+                <div className="form-seller d-flex flex-column ms-5 mt-5">
                     <div className="card" id="inventory">
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item">
@@ -227,8 +227,10 @@ const Selling = (id) => {
                       </button>
                     </div>
                   </div>
+                </form>
+                  
                 </div>
-              </form>
+            
             </div>
           </div>
         </section>

@@ -51,7 +51,7 @@ const Home = () => {
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e)=>setSearch(e.target.value)}></Navbar>
       <main>
-        <p>{searchParams}</p>
+        {/* <p>{searchParams}</p> */}
         <section className={styles.caraousell}>
           <div className="container">
             <div className="row" justify-content-center mt-4>
@@ -84,7 +84,7 @@ const Home = () => {
               <div className="col">
                 <div className="card align-items-center bg-danger" style={{ height: "180px" }}>
                   <div className="card-body d-flex flex-column">
-                    <img src="./images/home/category/t-shirt.png" alt="" />
+                    <img className="img-fluid" src="./images/home/category/t-shirt.png" alt="" />
                     <p className="card-text">T-shirt</p>
                   </div>
                 </div>
@@ -92,7 +92,7 @@ const Home = () => {
               <div className="col">
                 <div className="card bg-primary align-items-center" style={{ height: "180px" }}>
                   <div className="card-body d-flex flex-column">
-                    <img src="./images/home/category/shorts.png" alt="" />
+                    <img className="img-fluid" src="./images/home/category/shorts.png" alt="" />
                     <p className="card-text">Shorts</p>
                   </div>
                 </div>
@@ -100,7 +100,7 @@ const Home = () => {
               <div className="col">
                 <div className="card align-items-center" style={{ height: "180px", backgroundColor: "#f67b02" }}>
                   <div className="card-body d-flex flex-column">
-                    <img src="./images/home/category/jackets.png" alt="" />
+                    <img className="img-fluid" src="./images/home/category/jackets.png" alt="" />
                     <p className="card-text">Jacket</p>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ const Home = () => {
           </div>
         </section>
         <section id="new-product">
-          <div className="container">
+          <div className="container mt-5">
             <div className="row text-start mb-3">
               <div className="col">
                 <h4>Produk</h4>
