@@ -47,7 +47,7 @@ const Product = () => {
               <div className="col-12 col-lg-4 mt-5">
                 <div className="row">
                   <div className="col">
-                    <img src={mainPhoto} className="w-100" alt="" />
+                    <img src={products.photo} className="w-100" alt="" />
                   </div>
                 </div>
                 <div className="row row-cols-5 mt-2">

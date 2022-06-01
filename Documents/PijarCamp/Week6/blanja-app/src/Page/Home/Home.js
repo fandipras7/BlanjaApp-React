@@ -14,6 +14,7 @@ const Home = () => {
   
   const handleSearch = () => {
     setSearchParams({search: search})
+    searchData()
   }
 
   function moveToDetailProduct(id) {
@@ -25,8 +26,22 @@ const Home = () => {
     try {
       const result = await axios({
         method: "GET",
-        baseURL: "http://localhost:4000/v1",
-        url: `products?${searchParams}` /*"/products?page=1&limit=10"*/,
+        baseURL: process.env.REACT_APP_API_BLANJA, /*"http://localhost:4000/v1" */
+        url: /*`products?${searchParams}`*/ "/products?page=1&limit=10",
+      });
+      // console.log(result.data.data[5].photo);
+      setProducts(result.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function searchData() {
+    try {
+      const result = await axios({
+        method: "GET",
+        baseURL: process.env.REACT_APP_API_BLANJA, /*"http://localhost:4000/v1" */
+        url: `products?${searchParams}`,
       });
       // console.log(result.data.data[5].photo);
       setProducts(result.data.data);
@@ -45,10 +60,10 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetchData();
-  }, [searchParams]);
+      fetchData()
+  }, []);
   return (
-    <div>
+    <div className="font-face-metro">
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e)=>setSearch(e.target.value)}></Navbar>
       <main>
         {/* <p>{searchParams}</p> */}
@@ -136,13 +151,13 @@ const Home = () => {
               {products.map((item) => (
                 <div className="col mb-3" >
                   <Card className="card" key={item.id}>
-                    <img src="" class="img-fluid" alt="produk" />
+                    <img src={item.photo} class="img-fluid" alt="produk" />
                     <div class="card-body ">
                       <p class="card-text" id={item.id} onClick={()=>moveToDetailProduct(item.id)}>
                         {item.name}
                       </p>
                       <p id="price">{item.price}</p>
-                      <p id="seller">Zalora Cloth</p>
+                      <p id="seller fontku">Zalora Cloth</p>
                       <div class="rating">
                         <img src="assets/image/Star/Star.png" alt="" />
                         <img src="assets/image/Star/Star.png" alt="" />

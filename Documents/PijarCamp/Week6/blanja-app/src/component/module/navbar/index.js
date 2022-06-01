@@ -11,14 +11,14 @@ import searchImg from "./img/search.png"
 const Navbar = ({ className, home, onChange, onClickButton }) => {
   const [tampilkan, setTampilkan] = useState("");
   return (
-    <nav className={className}>
+    <nav className={className} id="fontku">
       <div className={`container ${styles.mybar}`}>
         <div className={`d-flex ${styles.navbar_brand}`}>
           <img src={logo} alt="" width="32" height="44" class="me-2" />
           <h5 className="mt-2">Blanja</h5>
         </div>
         <form className={"d-flex ms-auto " + styles.searchAndSort}>
-          <Input className={`${styles.form_control} me-2`} type="search" onChange={onChange} placeholder="Search"></Input>
+          <Input className={`${styles.form_control} me-2`} border="1px solid grey" type="search" onChange={onChange} placeholder="Search"></Input>
           <Button className={styles.btnSearch} onClick={onClickButton} type="button" border="none" backgroundColor="white" ><img src={searchImg} alt=""/></Button>
           <Button className="btn btn-light me-2" height="40px" type="submit">
             <img src={sortPic} alt="" />

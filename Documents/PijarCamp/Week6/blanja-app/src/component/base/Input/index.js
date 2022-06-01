@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./input.module.css"
 
 // const Input = ({ label, classWrapName, type, id, placeholder, className, name, onChange }) => {
 //   return (
@@ -17,7 +18,7 @@ const Input = ({ label, classWrapName, id, ...props }) => {
       <label htmlFor={id} className="form-label">
         {label}
       </label>
-      <input id={id} {...props} />
+      <input id={id} style={{border: props.border}} {...props} />
     </div>
   );
 };

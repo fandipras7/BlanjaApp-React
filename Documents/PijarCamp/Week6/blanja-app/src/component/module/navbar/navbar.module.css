@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "Metropolis";
+  src: local("Metropolis"),
+   url("../../../font/Metropolis/Metropolis-Regular.otf") format("truetype");
+  font-weight: bold;
+  }
+
+#fontku {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* body {
+  font-family: "Metropolis";
+} */
+
 .myBar {
   position: relative;
 }
