@@ -1,4 +1,4 @@
-.kotak {
+/* .kotak {
   width: 206px;
   height: 220px;
   background-color: #cc0b04;
@@ -9,15 +9,15 @@
   padding: 40px 0;
   text-align: center;
   position: relative;
-}
+} */
 
-.kotak p {
+/* .kotak p {
   position: absolute;
   left: 25%;
   top: 40%;
-}
+} */
 
-#shorts {
+/* #shorts {
   background-color: #1c3391;
 }
 
@@ -31,23 +31,40 @@
 
 #shoes {
   background-color: #57cd9e;
-}
+} */
 
-#pants img {
+
+
+/* #pants img {
   margin-top: 17px;
   margin-left: -17px;
 }
 
 #shoes img {
   margin-top: 17px;
+} */
+
+.card_text {
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  color: white;
+  font-weight: bold;
 }
 
+.btnCategory {
+  box-shadow: 0px 4px 10px rgba(181, 181, 181, 0.25);
+  position: absolute;
+  right: -10px;
+  top: 30%;
+}
+
+/* 
 .circle {
   height: 52px;
   width: 52px;
   background-color: white;
   box-shadow: 0px 4px 10px rgba(181, 181, 181, 0.25);
-  /* position: absolute; */
   margin-top: 90px;
   padding-top: 10px;
   margin-left: -20px;
@@ -55,10 +72,9 @@
   text-align: center;
 }
 
-/* list produk */
 .card img {
   border-radius: 5px;
-}
+} */
 
 #name,
 #price,
@@ -85,8 +101,8 @@
 
 .caraousell {
   position: relative;
-  margin-bottom: 250px;
-  top: 100px;
+  margin-bottom: 200px;
+  top: 76px;
 }
 
 .j1 {

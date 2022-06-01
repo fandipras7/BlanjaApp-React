@@ -1,12 +1,3 @@
-@font-face /*perintah untuk memanggil font eksternal*/ {
-  font-family: "Metropolis";
-  src: url("../font/Metropolis/Metropolis-Regular.otf"); /*memanggil file font eksternalnya di folder nexa*/
-}
-
-body {
-  font-family: "Metrapolis";
-}
-
 h4 {
   color: #db3022;
 }

@@ -11,7 +11,7 @@ import React from "react";
 
 const Button = ({backgroundColor, border, children, ...props }) => {
   return (
-    <button style={{ border: border, width: props.width, height: props.height, backgroundColor:backgroundColor }} {...props}>
+    <button style={{ border: border, width: props.width, height: props.height, backgroundColor:backgroundColor, borderRadius:props.borderRadius }} {...props}>
       {children ? children : props.title}
     </button>
   );

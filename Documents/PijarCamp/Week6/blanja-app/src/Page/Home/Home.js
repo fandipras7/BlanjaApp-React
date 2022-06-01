@@ -7,26 +7,25 @@ import Card from "../../component/base/card";
 import axios from "axios";
 
 const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   let [searchParams, setSearchParams] = useSearchParams({});
-  
+
   const handleSearch = () => {
-    setSearchParams({search: search})
-    searchData()
-  }
+    setSearchParams({ search: search });
+    searchData();
+  };
 
   function moveToDetailProduct(id) {
-    navigate(`/Product/${id}`)
+    navigate(`/Product/${id}`);
   }
 
-  
   async function fetchData() {
     try {
       const result = await axios({
         method: "GET",
-        baseURL: process.env.REACT_APP_API_BLANJA, /*"http://localhost:4000/v1" */
+        baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
         url: /*`products?${searchParams}`*/ "/products?page=1&limit=10",
       });
       // console.log(result.data.data[5].photo);
@@ -40,7 +39,7 @@ const Home = () => {
     try {
       const result = await axios({
         method: "GET",
-        baseURL: process.env.REACT_APP_API_BLANJA, /*"http://localhost:4000/v1" */
+        baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
         url: `products?${searchParams}`,
       });
       // console.log(result.data.data[5].photo);
@@ -50,38 +49,37 @@ const Home = () => {
     }
   }
 
-  const deleteProduct = (id) =>{
-    axios.delete(`http://localhost:4000/v1/products/${id}`)
-    .then(()=>{
-      alert('delete success')
-      fetchData()
-      navigate('/Home')
-    })
-  }
+  const deleteProduct = (id) => {
+    axios.delete(`http://localhost:4000/v1/products/${id}`).then(() => {
+      alert("delete success");
+      fetchData();
+      navigate("/Home");
+    });
+  };
 
   useEffect(() => {
-      fetchData()
+    fetchData();
   }, []);
   return (
     <div className="font-face-metro">
-      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e)=>setSearch(e.target.value)}></Navbar>
+      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar>
       <main>
         {/* <p>{searchParams}</p> */}
         <section className={styles.caraousell}>
           <div className="container">
             <div className="row" justify-content-center mt-4>
-              <div className="col-12 d-flex">
+              <div className={"col-12 d-flex " + styles.caraousell}>
                 <div>
-                  <img className="img-fluid" src="./images/home/jumbotron/1.png" alt="" />
+                  <img className={"img-fluid " + styles.j1} src="./images/home/jumbotron/1.png" alt="" />
                 </div>
                 <div>
-                  <img className="img-fluid" src="./images/home/jumbotron/2.png" alt="" />
+                  <img className={"img-fluid " + styles.j2} src="./images/home/jumbotron/2.png" alt="" />
                 </div>
                 <div>
-                  <img className="img-fluid" src="./images/home/jumbotron/3ty.png" alt="" />
+                  <img className={"img-fluid " + styles.j3} src="./images/home/jumbotron/3ty.png" alt="" />
                 </div>
                 <div>
-                  <img className="img-fluid" src="./images/home/jumbotron/4.png" alt="" />
+                  <img className={"img-fluid " + styles.j4} src="./images/home/jumbotron/4.png" alt="" />
                 </div>
               </div>
             </div>
@@ -95,12 +93,12 @@ const Home = () => {
                 <p>What are you currently looking for</p>
               </div>
             </div>
-            <div className="row row-cols-5">
+            <div className="row position-relative row-cols-2 row-cols-md-3 row-cols-lg-5">
               <div className="col">
                 <div className="card align-items-center bg-danger" style={{ height: "180px" }}>
                   <div className="card-body d-flex flex-column">
                     <img className="img-fluid" src="./images/home/category/t-shirt.png" alt="" />
-                    <p className="card-text">T-shirt</p>
+                    <p className={styles.card_text}>T-shirt</p>
                   </div>
                 </div>
               </div>
@@ -108,7 +106,7 @@ const Home = () => {
                 <div className="card bg-primary align-items-center" style={{ height: "180px" }}>
                   <div className="card-body d-flex flex-column">
                     <img className="img-fluid" src="./images/home/category/shorts.png" alt="" />
-                    <p className="card-text">Shorts</p>
+                    <p className={styles.card_text}>Shorts</p>
                   </div>
                 </div>
               </div>
@@ -116,7 +114,7 @@ const Home = () => {
                 <div className="card align-items-center" style={{ height: "180px", backgroundColor: "#f67b02" }}>
                   <div className="card-body d-flex flex-column">
                     <img className="img-fluid" src="./images/home/category/jackets.png" alt="" />
-                    <p className="card-text">Jacket</p>
+                    <p className={styles.card_text}>Jacket</p>
                   </div>
                 </div>
               </div>
@@ -124,7 +122,7 @@ const Home = () => {
                 <div className="card align-items-center" style={{ height: "180px", backgroundColor: "#e31f51" }}>
                   <div className="card-body d-flex flex-column">
                     <img className="img-fluid" src="./images/home/category/pants.png" alt="" />
-                    <p className="card-text">Pants</p>
+                    <p className={styles.card_text}>Pants</p>
                   </div>
                 </div>
               </div>
@@ -132,10 +130,13 @@ const Home = () => {
                 <div className="card align-items-center" style={{ height: "180px", backgroundColor: "#57cd9e" }}>
                   <div className="card-body d-flex flex-column">
                     <img className="img-fluid" src="./images/home/category/shoes.png" alt="" />
-                    <p className="card-text">Shoes</p>
+                    <p className={styles.card_text}>Shoes</p>
                   </div>
                 </div>
               </div>
+              <Button className={styles.btnCategory} width="52px" height="52px" borderRadius="50%" backgroundColor="white">
+                <img src="./images/home/category/rigth.png" alt="" />
+              </Button>
             </div>
           </div>
         </section>
@@ -143,33 +144,38 @@ const Home = () => {
           <div className="container mt-5">
             <div className="row text-start mb-3">
               <div className="col">
-                <h4>Produk</h4>
+                <p className="fw-bolder fs-4">Produk</p>
                 <p>What are you looking for</p>
               </div>
             </div>
             <div className="row row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xg-6">
               {products.map((item) => (
-                <div className="col mb-3" >
-                  <Card className="card" key={item.id}>
-                    <img src={item.photo} class="img-fluid" alt="produk" />
-                    <div class="card-body ">
-                      <p class="card-text" id={item.id} onClick={()=>moveToDetailProduct(item.id)}>
+                <div className="col mb-3">
+                  <Card className="card" height="278px" key={item.id}>
+                    {/* <div style={{ height: "" }}>
+                      <img src={item.photo} class="img-fluid" alt="produk" />
+                    </div> */}
+                    <div className="text-center">
+                      <img style={{ height: "136px" }} src={item.photo} class="img-fluid" alt="produk" />
+                    </div>
+                    <div className="card-body ">
+                      <p id={styles["name"]} onClick={() => moveToDetailProduct(item.id)}>
                         {item.name}
                       </p>
-                      <p id="price">{item.price}</p>
-                      <p id="seller fontku">Zalora Cloth</p>
+                      <p id={styles["price"]}>{item.price}</p>
+                      <p id={styles["seller"]}>Zalora Cloth</p>
                       <div class="rating">
-                        <img src="assets/image/Star/Star.png" alt="" />
-                        <img src="assets/image/Star/Star.png" alt="" />
-                        <img src="assets/image/Star/Star.png" alt="" />
-                        <img src="assets/image/Star/Star.png" alt="" />
-                        <img src="assets/image/Star/Star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
                       </div>
                     </div>
                   </Card>
                   <div className="editDelete">
-                    <Button onClick={()=>navigate(`/Edit/${item.id}`)}>Edit</Button>
-                    <Button onClick={()=>deleteProduct(item.id)}>Delete</Button>
+                    <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
+                    <Button onClick={() => deleteProduct(item.id)}>Delete</Button>
                   </div>
                 </div>
               ))}
