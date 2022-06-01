@@ -6,6 +6,7 @@ import EditProduct from "./Page/EditProduct/EditProduct";
 import Home from "./Page/Home/Home";
 import Login from "./Page/Login/Login";
 import Product from "./Page/Product/Product";
+import Profile from "./Page/Profile/Profile";
 import Register from "./Page/Register/Register";
 import Selling from "./Page/Selling/Selling";
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/Product/:id" element={<Product />} />
         <Route path="/Mybag" element={<Bag />}></Route>
         <Route path="/Checkout" element={<Checkout />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,145 @@
+import React from "react";
+import Navbar from "../../component/module/navbar";
+import styles from "./profile.module.css";
+import Button from "../../component/base/Button";
+
+const Profile = () => {
+  return (
+    <div>
+      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
+      <section id={styles["profile"]}>
+        <div className="container-fluid">
+          <div className="row">
+            <div className={`${styles.sidebar} col-3 text-center`}>
+              <div className={`${styles.menuHeader} d-flex justify-content-center mt-5`}>
+                <div className={styles.img_profile}>
+                  <img src="./images/profile/ava1.png" className="img-fluid" alt="" />
+                </div>
+                <div>
+                  <p className="ms-4">Johanes Mikael</p>
+                  <span>Edit Profile</span>
+                </div>
+              </div>
+              <div className={styles.menu + " mt-5"}>
+                <div className={`d-flex`}>
+                  <Button backgroundColor="#456BF3" width="32px" height="32px" borderRadius="50%">
+                    <img className="mb-1" src="./images/profile/user.png" alt="bro" />
+                  </Button>
+                  <p className="ms-3">My Account</p>
+                </div>
+                <div className={`d-flex`}>
+                  <Button backgroundColor="#F36F45" width="32px" height="32px" borderRadius="50%">
+                    <img className="mb-1" src="./images/profile/address.png" alt="bro" />
+                  </Button>
+                  <p className="ms-3">Shipping Address</p>
+                </div>
+                <div className={`d-flex`}>
+                  <Button backgroundColor="#F3456F" width="32px" height="32px" borderRadius="50%">
+                    <img className="mb-1" src="./images/profile/order.png" alt="bro" />
+                  </Button>
+                  <p className="ms-3">My Order</p>
+                </div>
+              </div>
+            </div>
+            <div className={`${styles.form_column} col-9`}>
+              <div class="card mt-3">
+                <div class="card-body">
+                  <h3 class="title-profil">My Profile</h3>
+                  <p class="sub-profil text-secondary">Manage your profile information</p>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <div class="mb-3 mt-1 row">
+                        <label for="Name" class="col-sm-3 col-form-label text-end text-form">
+                          Name
+                        </label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" value="Johanes Mikael" />
+                        </div>
+                      </div>
+                      <div class="mb-4 row">
+                        <label for="email" class="col-sm-3 col-form-label text-end text-form">
+                          Email
+                        </label>
+                        <div class="col-sm-8">
+                          <input type="email" class="form-control" value="johanes@gmail.com" />
+                        </div>
+                      </div>
+                      <div class="mb-4 row">
+                        <label for="phoneNumber" class="col-sm-3 col-form-label text-end text-form">
+                          Phone number
+                        </label>
+                        <div class="col-sm-8">
+                          <input type="number" class="form-control" id="inputPassword" value="08901289012" />
+                        </div>
+                      </div>
+                      <div class="mb-4 row">
+                        <label for="gender" class="col-sm-3 col-form-label text-end text-form">
+                          Gender
+                        </label>
+                        <div class="col-sm-8">
+                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                          <label class="form-check-label text-secondary" for="flexRadioDefault1">
+                            Laki-laki
+                          </label>
+                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                          <label class="form-check-label text-secondary" for="flexRadioDefault1">
+                            Perempuan
+                          </label>
+                        </div>
+                      </div>
+                      <div class="mb-4 row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label text-end text-form">
+                          Date of birth
+                        </label>
+                        <div class="col-sm-2">
+                          <select class="form-select" aria-label="Default select example">
+                            <option selected>1</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-3">
+                          <select class="form-select" aria-label="Default select example">
+                            <option selected>Januari</option>
+                            <option value="1">Febuari</option>
+                            <option value="2">Maret</option>
+                            <option value="3">April</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-3">
+                          <select class="form-select" aria-label="Default select example">
+                            <option selected>1990</option>
+                            <option value="1">1991</option>
+                            <option value="2">1992</option>
+                            <option value="3">1993</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <div class="col-sm-9">
+                          <button type="button" class="btn btn-submit">
+                            Save
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 image-profil text-center">
+                      <img src="../image/profil-avatar.png" class="rounded-circle" alt="" />
+                      <div class="select-avatar mt-3">
+                        <button class="btn btn-select-profil">Select image</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Profile;

@@ -1,0 +1,26 @@
+#profile {
+  margin-top: 70px;
+}
+
+.sidebar {
+  background-color: #ffffff;
+  height: 100vh;
+}
+
+.form_column {
+  background-color: #f5f5f5;
+}
+
+.img_profile {
+  width: 61px;
+  height: 61px;
+  /* border-radius: 50%; */
+}
+
+.img_profile img {
+  border-radius: 50%;
+}
+
+.menu {
+  padding-left: 30%;
+}
