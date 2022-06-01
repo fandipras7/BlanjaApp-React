@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Bag from "./Page/Bag/Bag";
 import EditProduct from "./Page/EditProduct/EditProduct";
 import Home from "./Page/Home/Home";
 import Login from "./Page/Login/Login";
@@ -15,8 +16,9 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/Selling" element={<Selling />} />
         <Route path="/Edit/:id" element={<EditProduct />} />
-        <Route path="/Product" element={<Product />} />
+        {/* <Route path="/Product" element={<Product />} /> */}
         <Route path="/Product/:id" element={<Product />} />
+        <Route path="/Mybag" element={<Bag />}></Route>
       </Routes>
     </BrowserRouter>
   );

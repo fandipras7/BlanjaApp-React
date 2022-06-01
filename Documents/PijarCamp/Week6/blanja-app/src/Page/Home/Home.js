@@ -61,7 +61,7 @@ const Home = () => {
     fetchData();
   }, []);
   return (
-    <div className="font-face-metro">
+    <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar>
       <main>
         {/* <p>{searchParams}</p> */}

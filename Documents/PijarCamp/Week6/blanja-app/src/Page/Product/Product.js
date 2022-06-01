@@ -6,25 +6,29 @@ import Button from "../../component/base/Button";
 import axios from "axios";
 
 // images
-import mainPhoto from "./image/bajubesar.png"
-import p1 from "./image/b1.png"
-import p2 from "./image/b2.png"
-import p3 from "./image/b3.png"
-import p4 from "./image/b4.png"
-import p5 from "./image/b5.png"
-import minus from "./image/minus.png"
-import plus from "./image/plus.png"
+import mainPhoto from "./image/bajubesar.png";
+import p1 from "./image/b1.png";
+import p2 from "./image/b2.png";
+import p3 from "./image/b3.png";
+import p4 from "./image/b4.png";
+import p5 from "./image/b5.png";
+import star1 from "./image/Star.png";
+import star2 from "./image/Star2.png";
+import minus from "./image/minus.png";
+import plus from "./image/plus.png";
 
 const Product = () => {
-  const {id} = useParams()
+  const { id } = useParams();
   // console.log(id);
   const [products, setProducts] = useState([]);
+  const photo = products.photo;
+  const rating = 5;
   async function fetchData() {
     try {
       const result = await axios({
         method: "GET",
         baseURL: "http://localhost:4000/v1",
-        url: `/products/${id}`
+        url: `/products/${id}`,
       });
       // console.log(result.data.data[5].photo);
       setProducts(result.data.data);
@@ -47,7 +51,7 @@ const Product = () => {
               <div className="col-12 col-lg-4 mt-5">
                 <div className="row">
                   <div className="col">
-                    <img src={products.photo} className="w-100" alt="" />
+                    <img src={photo ? photo : mainPhoto} className="w-100" alt="" />
                   </div>
                 </div>
                 <div className="row row-cols-5 mt-2">
@@ -73,22 +77,22 @@ const Product = () => {
                 <p className="fw-light text-success">{products.brand}</p>
                 <div className="rating d-flex">
                   <div>
-                    <img src="./images/product/Star.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <p className="ms-1 mt-1">(10)</p>
                 </div>
@@ -99,7 +103,11 @@ const Product = () => {
                 <div className="d-flex flex-column">
                   <p className="ms-1">Color</p>
                   <div className="d-flex">
-                    <div className={`${styles.color_circle} ${styles.black}`}>
+                    <Button backgroundColor="#1a1a1a" width="36px" height="36px" borderRadius="50%"></Button>
+                    <Button className="ms-2" backgroundColor="#db3022" width="36px" height="36px" borderRadius="50%"></Button>
+                    <Button className="ms-2" backgroundColor="#4290d8" width="36px" height="36px" borderRadius="50%"></Button>
+                    <Button className="ms-2" backgroundColor="#42d86c" width="36px" height="36px" borderRadius="50%"></Button>
+                    {/* <div className={`${styles.color_circle} ${styles.black}`}>
                       <p>.</p>
                     </div>
                     <div className={`${styles.color_circle} ${styles.red}`}>
@@ -110,7 +118,7 @@ const Product = () => {
                     </div>
                     <div className={`${styles.color_circle} ${styles.green}`}>
                       <p>.</p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="mt-3 d-flex">
@@ -199,29 +207,29 @@ const Product = () => {
                   <p class={styles.qty}>/10</p>
                 </div>
                 <div class={styles.barStar}>
-                  <img src="./images/product/Star.png" alt="" />
-                  <img src="./images/product/Star.png" alt="" />
-                  <img src="./images/product/Star.png" alt="" />
-                  <img src="./images/product/Star.png" alt="" />
-                  <img src="./images/product/Star.png" alt="" />
+                  <img src={star1} alt="" />
+                  <img src={star1} alt="" />
+                  <img src={star1} alt="" />
+                  <img src={star1} alt="" />
+                  <img src={star1} alt="" />
                 </div>
               </div>
               <div class="stats d-flex ms-5">
                 <div class="stars d-flex flex-column align-items-center">
                   <div class="mt-1">
-                    <img src="./images/product/Star2.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star2.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star2.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star2.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                   <div>
-                    <img src="./images/product/Star2.png" alt="" />
+                    <img src={star2} alt="" />
                   </div>
                 </div>
                 <div class={"ms-3 " + styles.grad}>
