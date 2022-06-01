@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../../component/module/navbar";
 import styles from "./bag.module.css";
 import Button from "../../component/base/Button";
+import Card from "../../component/base/card";
 // import { useNavigate } from 'react-router-dom'
 
 const Bag = () => {
@@ -14,7 +15,7 @@ const Bag = () => {
           <p className="fw-bold fs-3">My bag</p>
           <div className="row">
             <div className="col-lg-8">
-              <div className={`mb-3 ${styles.select_all} ${styles.card}`}>
+              <div className={`mb-3 ${styles.select_all} ${styles.card} px-4`}>
                 <div className="table-responsive-sm">
                   <table className="table mt-3">
                     <tbody>
@@ -34,7 +35,7 @@ const Bag = () => {
                   </table>
                 </div>
               </div>
-              <div className="card mb-3">
+              <div className="card mb-3 px-4">
                 <div className="table-responsive-sm">
                   <table className="table">
                     <tbody>
@@ -70,12 +71,12 @@ const Bag = () => {
                   </table>
                 </div>
               </div>
-              <div className="card mb-3">
+              <div className="card mb-3 px-4">
                 <div className="table-responsive-sm">
                   <table className="table">
                     <tbody>
                       <td className="align-middle">
-                        <div className="check">
+                        <div className={styles.check}>
                           <label className={styles.customcheck + " mt-2 input"}>
                             {/* <!-- <img className="img-products" src="../image/bag2.png"/> --> */}
                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
@@ -107,21 +108,21 @@ const Bag = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4">
-              <div className="card card-details card-right">
-                <h3 className="title-shoping">Shopping summary</h3>
-                <table className="mt-4">
-                  <tr>
-                    <th className="text-left total-price">Total price</th>
-                    <td className="float-end">$ 40.0</td>
-                  </tr>
-                </table>
-                <a href="../Checkout/checkout.html">
-                  <button className="mt-4 w-100 btn btn-checkout" type="button">
-                    Buy
-                  </button>
-                </a>
-              </div>
+            <div className="col-lg-4 mt-3">
+              <Card className={`${styles.card} ${styles.card_details}`}>
+                <h3 className="title-shoping">Shopping Summary</h3>
+                <div className="table-responsive-sm mt-4">
+                  <table className="table">
+                    <tbody>
+                      <td className={"float start " + styles.total_price}>Total Price</td>
+                      <td className="float-end fw-bold">$21.0</td>
+                    </tbody>
+                  </table>
+                </div>
+                <Button backgroundColor="#DB3022" color="white" borderRadius="25px" className="w-100">
+                  Buy
+                </Button>
+              </Card>
             </div>
           </div>
         </div>

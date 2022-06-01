@@ -15,9 +15,16 @@
   box-shadow: 0 0px 5px rgb(0 0 0 / 0.2);
   border-radius: 5px;
 }
+
+.card_details {
+  padding: 30px;
+  border-radius: 11px;
+}
+
 .card-bag {
   margin-top: 110px;
 }
+
 .minus {
   border-radius: 100%;
 }
@@ -29,10 +36,7 @@
   font-weight: bold;
   margin-bottom: 20px;
 }
-.card-details {
-  padding: 30px;
-  border-radius: 11px;
-}
+
 .delete {
   color: #db3022;
 }
@@ -54,7 +58,7 @@
 .checkmark {
   position: absolute;
   top: 10;
-  left: 5;
+  left: 0;
   height: 20px;
   width: 20px;
   background-color: #eee;
@@ -62,7 +66,7 @@
 }
 .checkmak {
   position: absolute;
-  top: 0;
+  top: 22px;
   left: 0;
   height: 20px;
   width: 20px;
@@ -142,6 +146,7 @@
 }
 .select_all {
   height: 70px;
+  line-height: 50px;
 }
 
 .min {
@@ -166,7 +171,7 @@
   line-height: 16px;
   color: #222222;
 }
-.total-price {
+.total_ price {
   color: #9b9b9b;
   font-weight: 500;
   line-height: 16px;

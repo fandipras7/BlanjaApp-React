@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Bag from "./Page/Bag/Bag";
+import Checkout from "./Page/Checkout/Checkout";
 import EditProduct from "./Page/EditProduct/EditProduct";
 import Home from "./Page/Home/Home";
 import Login from "./Page/Login/Login";
@@ -19,6 +20,7 @@ function App() {
         {/* <Route path="/Product" element={<Product />} /> */}
         <Route path="/Product/:id" element={<Product />} />
         <Route path="/Mybag" element={<Bag />}></Route>
+        <Route path="/Checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );
