@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./input.module.css"
+import styles from "./input.module.css";
 
 // const Input = ({ label, classWrapName, type, id, placeholder, className, name, onChange }) => {
 //   return (
@@ -12,13 +12,13 @@ import styles from "./input.module.css"
 //   );
 // };
 
-const Input = ({ label, classWrapName, id, ...props }) => {
+const Input = ({ label, classWrapName, id, classLabel, ...props }) => {
   return (
     <div className={classWrapName}>
-      <label htmlFor={id} className="form-label">
+      <label htmlFor={id} className={classLabel}>
         {label}
       </label>
-      <input id={id} style={{border: props.border}} {...props} />
+      <input id={id} style={{ border: props.border }} {...props} />
     </div>
   );
 };

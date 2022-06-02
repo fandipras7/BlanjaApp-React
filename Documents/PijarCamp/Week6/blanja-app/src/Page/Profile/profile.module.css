@@ -24,3 +24,9 @@
 .menu {
   padding-left: 30%;
 }
+
+.card {
+  box-shadow: 0 0px 5px rgb(0 0 0 / 0.2);
+  border-radius: 5px;
+  background-color: white;
+}
