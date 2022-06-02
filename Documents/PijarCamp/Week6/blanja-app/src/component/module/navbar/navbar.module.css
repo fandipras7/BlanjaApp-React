@@ -69,10 +69,19 @@ nav {
 
 @media screen and (max-width: 442px) {
   .form_control {
-    width: 150px;
+    background-color: red;
+    width: 180px !important;
     height: 35px;
     border-radius: 50px;
     margin-left: 0px;
+  }
+
+  .btn-cart {
+    background-color: red;
+  }
+
+  .searchAndSort {
+    background-color: yellow;
   }
 }
 

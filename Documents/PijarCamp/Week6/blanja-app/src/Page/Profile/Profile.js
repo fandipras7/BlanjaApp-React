@@ -3,7 +3,6 @@ import Navbar from "../../component/module/navbar";
 import styles from "./profile.module.css";
 import Button from "../../component/base/Button";
 import Card from "../../component/base/card";
-import Input from "../../component/base/Input";
 
 const Profile = () => {
   return (
@@ -12,7 +11,7 @@ const Profile = () => {
       <section id={styles["profile"]}>
         <div className="container-fluid">
           <div className="row">
-            <div className={`${styles.sidebar} col-3 text-center`}>
+            <div className={`${styles.sidebar} col-12 col-lg-3 text-center`}>
               <div className={`${styles.menuHeader} d-flex justify-content-center mt-5`}>
                 <div className={styles.img_profile}>
                   <img src="./images/profile/ava1.png" className="img-fluid" alt="" />
@@ -43,9 +42,9 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className={`${styles.form_column} col-9`}>
+            <div className={`${styles.form_column} col-12 col-lg-9`}>
               <div className="row justify-content-center">
-                <div className="col-7 mt-5">
+                <div className="col-12 col-lg-8 mt-5">
                   <Card className={styles.card + " p-4"}>
                     <h5>My Profile</h5>
                     <p>Manage your profile information</p>
@@ -53,7 +52,7 @@ const Profile = () => {
                     <div className="row">
                       <div className="col-9">
                         <div className="mb-3 mt-1 row">
-                          <label for="Name" className="col-sm-3 col-form-label text-center">
+                          <label for="Name" className="col-sm-3 col-form-label text-start">
                             Name
                           </label>
                           <div className="col-sm-8">
@@ -61,7 +60,7 @@ const Profile = () => {
                           </div>
                         </div>
                         <div className="mb-3 mt-1 row">
-                          <label for="Name" className="col-sm-3 col-form-label text-center">
+                          <label for="Name" className="col-sm-3 col-form-label text-start">
                             Email
                           </label>
                           <div className="col-sm-8">
@@ -77,7 +76,7 @@ const Profile = () => {
                           </div>
                         </div>
                         <div class="mb-4 row">
-                          <label for="gender" className="col-sm-3 col-form-label text-center">
+                          <label for="gender" className="col-sm-3 col-form-label text-start">
                             Gender
                           </label>
                           <div className="col-sm-8 my-auto">
@@ -92,7 +91,7 @@ const Profile = () => {
                           </div>
                         </div>
                         <div className="mb-4 row">
-                          <label for="inputPassword" className="col-sm-3 col-form-label text-end text-form">
+                          <label for="inputPassword" className="col-sm-3 col-form-label text-start text-form">
                             Date of birth
                           </label>
                           <div className="col-sm-2">
@@ -121,11 +120,21 @@ const Profile = () => {
                           </div>
                         </div>
                         <div className="mb-3 row">
-                          <div className="col-sm-9">
-                            <button type="button" className="btn btn-submit">
+                          <div className="col-sm-6 text-start">
+                            <Button className="p-1 me-4" borderRadius="25px" backgroundColor="#DB3022" width="100px" color="white">
                               Save
-                            </button>
+                            </Button>
                           </div>
+                        </div>
+                      </div>
+                      <div className="col-sm-3 border-start border-success text-center h-50">
+                        <div>
+                          <img src="./images/profile/ava1.png" className="rounded-circle img-fluid" alt="" />
+                        </div>
+                        <div class="select-avatar mt-3">
+                          <Button className="" color="gray" backgroundColor="white" borderRadius="25px">
+                            Select Image
+                          </Button>
                         </div>
                       </div>
                     </div>
