@@ -35,7 +35,7 @@ const MyProduct = () => {
 
   useEffect(() => {
     fetchData();
-  }, [products]);
+  }, []);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>
