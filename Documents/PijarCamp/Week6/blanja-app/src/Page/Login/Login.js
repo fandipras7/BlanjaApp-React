@@ -19,8 +19,8 @@ const Login = () => {
             <p className="text-center fw-bold">Please Login with your account</p>
             <div className="buttons text-center mb-4">
               <div>
-                <Button title="Seller" className={styles.sl}></Button>
-                <Button title="Customer" className={styles.cs}></Button>
+                <Button title="Customer" className={styles.cs} onClick={() => navigate("/LoginCustomer")}></Button>
+                <Button title="Seller" className={styles.sl} onClick={() => navigate("/Login")}></Button>
               </div>
             </div>
             <p className="text-end text-danger">Forgot password?</p>

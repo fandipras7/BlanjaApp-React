@@ -14,12 +14,15 @@ h4 {
 .cs {
   width: 123px;
   height: 48px;
-  background-color: #db3022;
-  color: white;
+  background-color: white;
+  color: #db3022;
 }
 
 .sl {
-  color: #db3022;
+  width: 123px;
+  height: 48px;
+  color: white;
+  background-color: #db3022;
 }
 
 .btnSubmit {

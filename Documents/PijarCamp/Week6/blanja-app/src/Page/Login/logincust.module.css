@@ -7,23 +7,23 @@ h4 {
   padding: 0;
 }
 
-.btn-group {
+.btn_group {
   border: 1px solid #db3022;
 }
 
 .cs {
   width: 123px;
   height: 48px;
-  background-color: white;
-  color: #db3022;
+  background-color: #db3022;
+  color: white;
 }
 
 .sl {
   color: #db3022;
   width: 123px;
   height: 48px;
-  background-color: #db3022;
-  color: white;
+  background-color: white;
+  color: red;
 }
 
 .btnSubmit {
@@ -34,6 +34,6 @@ h4 {
   color: white;
 }
 
-/* #register {
+#register {
   color: #db3022;
-} */
+}

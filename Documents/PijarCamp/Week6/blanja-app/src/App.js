@@ -12,13 +12,17 @@ import Profile from "./Page/Profile/Profile";
 import Register from "./Page/Register/Register";
 import Selling from "./Page/StoreProfile/Selling";
 import MyProduct from "./Page/StoreProfile/MyProduct";
+import LoginCustomer from "./Page/Login/LoginCustomer";
+import RegisterCustomer from "./Page/Register/RegisterCustomer";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/LoginCustomer" element={<LoginCustomer />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/RegisterCustomer" element={<RegisterCustomer />} />
         <Route path="/Profile/StoreProfile/Selling" element={<Selling />} />
         <Route path="/Edit/:id" element={<EditProduct />} />
         {/* <Route path="/Product" element={<Product />} /> */}

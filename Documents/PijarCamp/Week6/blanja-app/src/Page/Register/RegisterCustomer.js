@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./register.module.css";
-import logoBlanja from "./logoBlanja.png";
+import styles from "./registercust.module.css";
 import Button from "../../component/base/Button";
 import Input from "../../component/base/Input";
+import logoBlanja from "../image/logoBlanja.png";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const RegisterCustomer = () => {
   const navigate = useNavigate();
   return (
     <section className="vh-100">
@@ -20,13 +20,15 @@ const Register = () => {
 
             <div className="buttons text-center mb-4">
               <div className="btn-group">
-                <Button title="Customer" className={styles.cs} onClick={() => navigate("/RegisterCustomer")}></Button>
-                <Button title="Seller" className={styles.sl}></Button>
+                <Button title="Customer" className={styles.cs}></Button>
+                <Button title="Seller" className={styles.sl} onClick={() => navigate("/Register")}></Button>
               </div>
             </div>
             <p className="text-end">Forgot password?</p>
             <Input classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="Email"></Input>
             <Input classWrapName="form-outline mb-2" type="text" id="nama" className="form-control form-control-lg" placeholder="Nama"></Input>
+            <Input classWrapName="form-outline mb-2" type="text" id="phone" className="form-control form-control-lg" placeholder="Phone Number"></Input>
+            <Input classWrapName="form-outline mb-2" type="text" id="store" className="form-control form-control-lg" placeholder="Store Name"></Input>
             <Input classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>
             <div className="d-grid">
               <Button title="Primary" width="none" className={`btn btn-danger ${styles.btnSubmit}`}></Button>
@@ -44,4 +46,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterCustomer;

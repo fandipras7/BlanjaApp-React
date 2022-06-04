@@ -14,26 +14,25 @@ h4 {
 .cs {
   width: 123px;
   height: 48px;
-  background-color: white;
-  color: #db3022;
-}
-
-.sl {
-  color: #db3022;
-  width: 123px;
-  height: 48px;
   background-color: #db3022;
   color: white;
 }
 
+.sl {
+  width: 123px;
+  height: 48px;
+  color: #db3022;
+  background-color: white;
+}
+
 .btnSubmit {
-  background-color: #db3022;
+  /* background-color: #db3022; */
   height: 48px;
   border-radius: 25px;
   border: none;
   color: white;
 }
 
-/* #register {
+#reg {
   color: #db3022;
-} */
+}
