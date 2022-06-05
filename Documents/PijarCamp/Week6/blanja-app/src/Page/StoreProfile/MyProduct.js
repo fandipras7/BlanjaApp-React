@@ -10,8 +10,10 @@ import orderMenu from "../image/profile/cart_min.png";
 import searchbtn from "../image/profile/search.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const MyProduct = () => {
   const [products, setProducts] = useState([]);
+  const { isGeting, product } = useSelector((state) => state.product);
   const navigate = useNavigate();
   async function fetchData() {
     try {
@@ -35,7 +37,9 @@ const MyProduct = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [isGeting]);
+  console.log(isGeting);
+  console.log(product);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>

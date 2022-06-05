@@ -4,19 +4,25 @@ const initialState = {
 };
 
 const productReducer = (state = initialState, action) => {
-  if (action.type === "GET_DATA_PENDING") {
+  //   if (action.type === "GET_DATA_PENDING") {
+  //     return {
+  //       ...state,
+  //       isGeting: true,
+  //     };
+  //   } else
+  if (action.type === "GET_DATA_SUCCESS") {
     return {
       ...state,
+      product: [...action.payload.product],
       isGeting: true,
     };
-  } else if (action.type === "GET_DATA_SUCCESS") {
+  } else if (action.type === "ADD_PRODUCT") {
     return {
-        ...state,
-        product: [...action.payload.product],
-        isGeting: false
-    }
+      ...state,
+      product: [...state.product, action.payload.product],
+    };
   } else {
-      return state
+    return state;
   }
 };
 

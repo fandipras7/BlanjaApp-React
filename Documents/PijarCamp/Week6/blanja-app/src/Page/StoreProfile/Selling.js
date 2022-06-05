@@ -3,9 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../component/module/navbar";
 import styles from "./selling.module.css";
 import axios from "axios";
+import avaImg from "../image/profile/person.png";
+import menuHome from "../image/profile/homeMenu.png";
+import menuProduk from "../image/profile/package_1.png";
+import menuOrder from "../image/profile/cart_min.png";
+import { addProduct } from "../../config/redux/action/productAction";
+import { useDispatch } from "react-redux";
 
 const Selling = (id) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [dataProduct, setDataProduct] = useState({
     name: "",
     price: "",
@@ -24,7 +31,7 @@ const Selling = (id) => {
   const handleRadio = (e) => {
     setDataProduct({
       ...dataProduct,
-      condition: e.target.value,
+      condition: e.currentTarget.value,
     });
     // console.log(e.target.value);
   };
@@ -37,17 +44,23 @@ const Selling = (id) => {
   };
 
   const handleAddproduct = (e) => {
-    console.log(dataProduct);
     e.preventDefault();
-    axios.post('http://localhost:4000/v1/products', dataProduct)
-    .then((res)=>{
-      console.log(res.data);
-      navigate('/Home')
-    })
-    .catch((e)=>{
-      alert(e.reponse.data.message)
-    })
+    dispatch(addProduct(dataProduct, navigate));
   };
+
+  // const handleAddproduct = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:4000/v1/products", dataProduct)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       navigate("/Home");
+  //     })
+  //     .catch((e) => {
+  //       alert(e.reponse.data.message);
+  //     });
+  // };
+  console.log(dataProduct);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>
@@ -55,54 +68,54 @@ const Selling = (id) => {
         <section>
           <div className="container-fluid">
             <div className="row">
-                <div className={"col-12 col-xl-4 text-end position-relative " + styles.menu}>
-                  <div className={"d-flex " + styles.menuHeader + " ms-5 mt-5 justify-content-center"}>
-                    <div>
-                      <img src="./images/selling/person.png" alt="fp" />
-                    </div>
-                    <div className="name d-flex flex-column ms-2">
-                      <p className="">Johanes Mikael</p>
-                      <i className="bi bi-pencil">
-                        <p className="">Edit Profile</p>
-                      </i>
-                    </div>
+              <div className={"col-12 col-xl-4 text-end position-relative " + styles.menu}>
+                <div className={"d-flex " + styles.menuHeader + " ms-5 mt-5 justify-content-center"}>
+                  <div>
+                    <img src={avaImg} alt="fp" />
                   </div>
-                  <div className="d-flex mt-5 align-items-center justify-content-center">
-                    <div className={"mb-3 " + styles.circle + " " + styles.store}>
-                      <img src="./images/selling/homeMenu.png" alt="" />
-                    </div>
-                    <div className={styles.select}>
-                      <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected>Store</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className={"mb-4 " + styles.circle + " " + styles.product}>
-                      <img src="./images/selling/package_1.png" alt="menu" />
-                    </div>
-                    <div className={"mb-3 " + styles.select}>
-                      <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
-                        <option selected>Product</option>
-                        <option value="1">My products</option>
-                        <option value="2">Selling products</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className={"mb-3 " + styles.circle + " " + styles.order}>
-                      <img src="./images/selling/cart_min.png" alt="" />
-                    </div>
-                    <div className={styles.select}>
-                      <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected>Order</option>
-                      </select>
-                    </div>
+                  <div className="name d-flex flex-column ms-2">
+                    <p className="">Johanes Mikael</p>
+                    <i className="bi bi-pencil">
+                      <p className="">Edit Profile</p>
+                    </i>
                   </div>
                 </div>
-                <div className="col-12 col-lg-7 bg-light column-form">
-                <form onSubmit={handleAddproduct}> 
-                <div className="form-seller d-flex flex-column ms-5 mt-5">
+                <div className="d-flex mt-5 align-items-center justify-content-center">
+                  <div className={"mb-3 " + styles.circle + " " + styles.store}>
+                    <img src={menuHome} alt="" />
+                  </div>
+                  <div className={styles.select}>
+                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option selected>Store</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className={"mb-4 " + styles.circle + " " + styles.product}>
+                    <img src={menuProduk} alt="menu" />
+                  </div>
+                  <div className={"mb-3 " + styles.select}>
+                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
+                      <option selected>Product</option>
+                      <option value="1">My products</option>
+                      <option value="2">Selling products</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className={"mb-3 " + styles.circle + " " + styles.order}>
+                    <img src={menuOrder} alt="" />
+                  </div>
+                  <div className={styles.select}>
+                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option selected>Order</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="col-12 col-lg-7 bg-light column-form">
+                <form onSubmit={handleAddproduct}>
+                  <div className="form-seller d-flex flex-column ms-5 mt-5">
                     <div className="card" id="inventory">
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item">
@@ -113,7 +126,7 @@ const Selling = (id) => {
                             <span className="fw-light">Name Of Goods</span>
                           </label>
                           <div className="col-sm-4">
-                            <input type="text" className="form-control" name="name" id="productName" onChange={handleChange} />
+                            <input type="text" className="form-control" name="name" value={dataProduct.name} id="productName" onChange={handleChange} />
                           </div>
                         </li>
                       </ul>
@@ -128,26 +141,26 @@ const Selling = (id) => {
                             <span className="fw-light">Unit Price</span>
                           </label>
                           <div className="col-sm-4">
-                            <input type="text" className="form-control" name="price" id="price" onChange={handleChangeNumber} />
+                            <input type="text" className="form-control" name="price" value={dataProduct.price} id="price" onChange={handleChangeNumber} />
                           </div>
                           <label for="stock" className="col-sm-2 col-form-label">
                             <span className="fw-light">Stock</span>
                           </label>
                           <div className="col-sm-4">
-                            <input type="text" placeholder="unit" className="form-control" name="stock" id="stock" onChange={handleChangeNumber} />
+                            <input type="text" placeholder="unit" className="form-control" name="stock" value={dataProduct.stock} id="stock" onChange={handleChangeNumber} />
                           </div>
                           <label for="stock" className="col-sm-2 col-form-label">
                             <span className="fw-light">Stock</span>
                           </label>
                           <div className="col-sm-4">
                             <div className="form-check form-check-inline">
-                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked id="inlineRadio1" value="Baru" onClick={handleRadio} />
+                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked id="inlineRadio1" value="Baru" onChange={handleRadio} />
                               <label className="form-check-label" for="inlineRadio1">
                                 Baru
                               </label>
                             </div>
                             <div className="form-check form-check-inline">
-                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked id="inlineRadio2" value="Bekas" onClick={handleRadio} />
+                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked id="inlineRadio2" value="Bekas" onChange={handleRadio} />
                               <label className="form-check-label" for="inlineRadio2">
                                 Bekas
                               </label>
@@ -215,7 +228,8 @@ const Selling = (id) => {
                               <img src="Screenshot (86) 1.png" alt="" />
                             </li>
                             <li className="list-group-item">
-                              <input type="text" className="form-control" style={{ height: "250px" }} name="description" id="description" onChange={handleChange} />
+                              <textarea style={{ height: "250px" }} value={dataProduct.description} name="description" onChange={handleChange} class="form-control" aria-label="With textarea"></textarea>
+                              {/* <input type="text" className="form-control" style={{ height: "250px" }} name="description" value={dataProduct.description} id="description" onChange={handleChange} /> */}
                             </li>
                           </ul>
                         </div>
@@ -228,9 +242,7 @@ const Selling = (id) => {
                     </div>
                   </div>
                 </form>
-                  
-                </div>
-            
+              </div>
             </div>
           </div>
         </section>

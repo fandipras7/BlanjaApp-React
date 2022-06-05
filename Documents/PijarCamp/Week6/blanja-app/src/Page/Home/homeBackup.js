@@ -1,22 +1,72 @@
 import { React, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../component/base/Button";
 import Navbar from "../../component/module/navbar";
 import styles from "./home.module.css";
 import Card from "../../component/base/card";
+// import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../config/redux/action/productAction";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { product, isGeting } = useSelector((state) => state.product);
+  // const [products, setProducts] = useState([]);
+  const {product} = useSelector((state)=>state.product)
+  // const [search, setSearch] = useState("");
+  // let [searchParams, setSearchParams] = useSearchParams({});
+
+  // const handleSearch = () => {
+  //   setSearchParams({ search: search });
+  //   searchData();
+  // };
+
+  // function moveToDetailProduct(id) {
+  //   navigate(`/Product/${id}`);
+  // }
+
+  // async function fetchData() {
+  //   try {
+  //     const result = await axios({
+  //       method: "GET",
+  //       baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
+  //       url: /*`products?${searchParams}`*/ "/products?page=1&limit=10",
+  //     });
+  //     // console.log(result.data.data[5].photo);
+  //     setProducts(result.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  // async function searchData() {
+  //   try {
+  //     const result = await axios({
+  //       method: "GET",
+  //       baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
+  //       url: `products?${searchParams}`,
+  //     });
+  //     // console.log(result.data.data[5].photo);
+  //     setProducts(result.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  // const deleteProduct = (id) => {
+  //   axios.delete(`http://localhost:4000/v1/products/${id}`).then(() => {
+  //     alert("delete success");
+  //     fetchData();
+  //     navigate("/Home");
+  //   });
+  // };
+
 
   useEffect(() => {
     // fetchData();
-    dispatch(getData());
+   dispatch(getData())
   }, []);
-  console.log(isGeting);
+  console.log(product);
   return (
     <div>
       {/* <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar> */}
@@ -108,14 +158,16 @@ const Home = () => {
             </div>
             <div className="row row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xg-6">
               {/* { isGeting ? <p>{product.name}</p> : <p>produk kosong</p>} */}
-              {product.map((item) => (
+              { product.map((item) => (
                 <div className="col mb-3">
                   <Card className="card" height="278px" key={item.id}>
                     <div className="text-center">
                       <img style={{ height: "136px" }} src={item.photo} class="img-fluid" alt="produk" />
                     </div>
                     <div className="card-body ">
-                      <p id={styles["name"]}>{item.name}</p>
+                      <p id={styles["name"]} >
+                        {item.name}
+                      </p>
                       <p id={styles["price"]}>{item.price}</p>
                       <p id={styles["seller"]}>Zalora Cloth</p>
                       <div class="rating">
@@ -131,9 +183,35 @@ const Home = () => {
                     <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
                     <Button onClick={() => deleteProduct(item.id)}>Delete</Button>
                   </div> */}
-                  <Button onClick={() => navigate(`/profile/storeprofile/myproduct`)}>All Product</Button>
                 </div>
-              ))}
+              ))} 
+              {/* { products.map((item) => (
+                <div className="col mb-3">
+                  <Card className="card" height="278px" key={item.id}>
+                    <div className="text-center">
+                      <img style={{ height: "136px" }} src={item.photo} class="img-fluid" alt="produk" />
+                    </div>
+                    <div className="card-body ">
+                      <p id={styles["name"]} onClick={() => moveToDetailProduct(item.id)}>
+                        {item.name}
+                      </p>
+                      <p id={styles["price"]}>{item.price}</p>
+                      <p id={styles["seller"]}>Zalora Cloth</p>
+                      <div class="rating">
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                      </div>
+                    </div>
+                  </Card>
+                  <div className="editDelete">
+                    <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
+                    <Button onClick={() => deleteProduct(item.id)}>Delete</Button>
+                  </div>
+                </div>
+              ))} */}
             </div>
           </div>
         </section>

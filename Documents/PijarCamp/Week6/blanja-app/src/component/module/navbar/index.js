@@ -67,7 +67,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
                 </NavLink>
               </li>
               <li className="nav-item ms-2 mt-2">
-                <NavLink to="/Register">
+                <NavLink to="/Profile/StoreProfile/Selling">
                   <Button border="none" backgroundColor="white" className="btn btn-light">
                     <img className={styles.ava} src="./images/navbar/avatar.png" alt="" />
                   </Button>
