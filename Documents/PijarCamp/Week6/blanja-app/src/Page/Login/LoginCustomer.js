@@ -4,13 +4,12 @@ import logoBlanja from "../image/logoBlanja.png";
 import Button from "../../component/base/Button";
 import Input from "../../component/base/Input";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginSeller } from "../../config/redux/action/userAction";
 
 const LoginCustomer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { response } = useSelector((state) => state.user);
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",

@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./register.module.css";
 import logoBlanja from "./logoBlanja.png";
 import Button from "../../component/base/Button";
 import Input from "../../component/base/Input";
 import { useNavigate } from "react-router-dom";
+import { userRegister } from "../../helper/addDataRegister";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [formRegister, setFormRegister] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  console.log(formRegister);
+  const handleChange = (e) => {
+    setFormRegister({
+      ...formRegister,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleRegister = (e) => {
+    e.preventDefault();
+    userRegister(formRegister, navigate);
+  };
   return (
     <section className="vh-100">
       <div className="container h-100">
@@ -25,12 +42,14 @@ const Register = () => {
               </div>
             </div>
             <p className="text-end">Forgot password?</p>
-            <Input classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="Email"></Input>
-            <Input classWrapName="form-outline mb-2" type="text" id="nama" className="form-control form-control-lg" placeholder="Nama"></Input>
-            <Input classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>
-            <div className="d-grid">
-              <Button title="Primary" width="none" className={`btn btn-danger ${styles.btnSubmit}`}></Button>
-            </div>
+            <form onSubmit={handleRegister}>
+              <Input name="name" value={formRegister.name} onChange={handleChange} type="text" classWrapName="form-outline mb-2" id="name" className="form-control form-control-lg" placeholder="name"></Input>
+              <Input name="email" value={formRegister.email} onChange={handleChange} classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="email"></Input>
+              <Input name="password" value={formRegister.password} onChange={handleChange} classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>
+              <div className="d-grid">
+                <Button title="Primary" width="none" className={`btn btn-danger ${styles.btnSubmit}`}></Button>
+              </div>
+            </form>
             <p className="text-center mt-3">
               Already have a Tokopedia account?{" "}
               <span onClick={() => navigate("/Login")} className="text-danger">

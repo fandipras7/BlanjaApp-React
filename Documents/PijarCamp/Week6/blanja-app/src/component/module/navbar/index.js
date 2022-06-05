@@ -7,8 +7,10 @@ import sortPic from "./img/sort.png";
 import cartPic from "./img/cart.png";
 import logo from "./img/logoBlanja.png";
 import searchImg from "./img/search.png";
+import { useSelector } from "react-redux";
 
-const Navbar = ({ className, home, onChange, onClickButton }) => {
+const Navbar = ({ className, onChange, onClickButton }) => {
+  const { isLogin } = useSelector((state) => state.user);
   const [tampilkan, setTampilkan] = useState("");
   return (
     <nav className={className}>
@@ -41,11 +43,42 @@ const Navbar = ({ className, home, onChange, onClickButton }) => {
         </Button>
         <div className={"collapse navbar-collapse my-auto " + tampilkan} id="navbarNav">
           {/* <li className="nav-item"></li> */}
-          {home ? (
+          {isLogin ? (
+            <ul className="navbar-nav ms-auto ps-2 align-items-center">
+              <li className="nav-item mt-2">
+                <NavLink to="/">
+                  <Button border="none" backgroundColor="white" className="btn btn-cart" type="submit">
+                    <img src={cartPic} alt="" />
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="nav-item ms-2 mt-2">
+                <NavLink to="/Login">
+                  <Button border="none" backgroundColor="white" className="btn btn-light" type="submit">
+                    <img src="./images/navbar/notif.png" alt="" />
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="nav-item ms-2 mt-2">
+                <NavLink to="/Register">
+                  <Button border="none" backgroundColor="white" className="btn btn-light">
+                    <img src="./images/navbar/mail.png" alt="" />
+                  </Button>
+                </NavLink>
+              </li>
+              <li className="nav-item ms-2 mt-2">
+                <NavLink to="/Register">
+                  <Button border="none" backgroundColor="white" className="btn btn-light">
+                    <img className={styles.ava} src="./images/navbar/avatar.png" alt="" />
+                  </Button>
+                </NavLink>
+              </li>
+            </ul>
+          ) : (
             <ul className="navbar-nav ms-auto ps-2 align-items-center">
               <li className="nav-item">
                 <NavLink to="/">
-                  <Button className="btn btn-cart" type="submit">
+                  <Button border="none" backgroundColor="white" className="btn btn-cart" type="submit">
                     <img src={cartPic} alt="" />
                   </Button>
                 </NavLink>
@@ -58,37 +91,6 @@ const Navbar = ({ className, home, onChange, onClickButton }) => {
               <li className="nav-item ms-2 mt-2">
                 <NavLink to="/Register">
                   <Button className={styles.btnSignIn}>Sign In</Button>
-                </NavLink>
-              </li>
-            </ul>
-          ) : (
-            <ul className="navbar-nav ms-auto ps-2 align-items-center">
-              <li className="nav-item">
-                <NavLink to="/">
-                  <Button className="btn btn-cart" type="submit">
-                    <img src={cartPic} alt="" />
-                  </Button>
-                </NavLink>
-              </li>
-              <li className="nav-item ms-2 mt-2">
-                <NavLink to="/Login">
-                  <Button className="btn btn-light" type="submit">
-                    <img src="./images/navbar/notif.png" alt="" />
-                  </Button>
-                </NavLink>
-              </li>
-              <li className="nav-item ms-2 mt-2">
-                <NavLink to="/Register">
-                  <Button className="btn btn-light">
-                    <img src="./images/navbar/mail.png" alt="" />
-                  </Button>
-                </NavLink>
-              </li>
-              <li className="nav-item ms-2 mt-2">
-                <NavLink to="/Register">
-                  <Button className="btn btn-light">
-                    <img src="./images/navbar/avatar.png" alt="" />
-                  </Button>
                 </NavLink>
               </li>
             </ul>

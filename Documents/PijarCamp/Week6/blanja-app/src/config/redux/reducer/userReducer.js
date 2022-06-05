@@ -2,10 +2,9 @@ const initialState = {
   user: {
     name: "",
     email: "",
-    roleId: "",
   },
   isLoading: false,
-  response: false,
+  isLogin: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,7 +18,7 @@ const userReducer = (state = initialState, action) => {
       ...state,
       user: action.payload.user,
       isLoading: false,
-      response: true,
+      isLogin: true,
     };
   } else {
     return state;
