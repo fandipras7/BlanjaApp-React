@@ -1,68 +1,76 @@
-import { React, useEffect, useState } from "react";
-import { NavLink, Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { React, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../component/base/Button";
 import Navbar from "../../component/module/navbar";
 import styles from "./home.module.css";
 import Card from "../../component/base/card";
-import axios from "axios";
+// import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "../../config/redux/action/productAction";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState("");
-  let [searchParams, setSearchParams] = useSearchParams({});
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const [products, setProducts] = useState([]);
+  const {product} = useSelector((state)=>state.product)
+  // const [search, setSearch] = useState("");
+  // let [searchParams, setSearchParams] = useSearchParams({});
 
-  const handleSearch = () => {
-    setSearchParams({ search: search });
-    searchData();
-  };
+  // const handleSearch = () => {
+  //   setSearchParams({ search: search });
+  //   searchData();
+  // };
 
-  function moveToDetailProduct(id) {
-    navigate(`/Product/${id}`);
-  }
+  // function moveToDetailProduct(id) {
+  //   navigate(`/Product/${id}`);
+  // }
 
-  async function fetchData() {
-    try {
-      const result = await axios({
-        method: "GET",
-        baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
-        url: /*`products?${searchParams}`*/ "/products?page=1&limit=10",
-      });
-      // console.log(result.data.data[5].photo);
-      setProducts(result.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function fetchData() {
+  //   try {
+  //     const result = await axios({
+  //       method: "GET",
+  //       baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
+  //       url: /*`products?${searchParams}`*/ "/products?page=1&limit=10",
+  //     });
+  //     // console.log(result.data.data[5].photo);
+  //     setProducts(result.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
-  async function searchData() {
-    try {
-      const result = await axios({
-        method: "GET",
-        baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
-        url: `products?${searchParams}`,
-      });
-      // console.log(result.data.data[5].photo);
-      setProducts(result.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function searchData() {
+  //   try {
+  //     const result = await axios({
+  //       method: "GET",
+  //       baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
+  //       url: `products?${searchParams}`,
+  //     });
+  //     // console.log(result.data.data[5].photo);
+  //     setProducts(result.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
-  const deleteProduct = (id) => {
-    axios.delete(`http://localhost:4000/v1/products/${id}`).then(() => {
-      alert("delete success");
-      fetchData();
-      navigate("/Home");
-    });
-  };
+  // const deleteProduct = (id) => {
+  //   axios.delete(`http://localhost:4000/v1/products/${id}`).then(() => {
+  //     alert("delete success");
+  //     fetchData();
+  //     navigate("/Home");
+  //   });
+  // };
+
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
+   dispatch(getData())
   }, []);
+  console.log(product);
   return (
     <div>
-      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar>
+      {/* <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar> */}
+      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top"></Navbar>
       <main>
         {/* <p>{searchParams}</p> */}
         <section className={styles.caraousell}>
@@ -149,12 +157,37 @@ const Home = () => {
               </div>
             </div>
             <div className="row row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xg-6">
-              {products.map((item) => (
+              {/* { isGeting ? <p>{product.name}</p> : <p>produk kosong</p>} */}
+              { product.map((item) => (
                 <div className="col mb-3">
                   <Card className="card" height="278px" key={item.id}>
-                    {/* <div style={{ height: "" }}>
-                      <img src={item.photo} class="img-fluid" alt="produk" />
-                    </div> */}
+                    <div className="text-center">
+                      <img style={{ height: "136px" }} src={item.photo} class="img-fluid" alt="produk" />
+                    </div>
+                    <div className="card-body ">
+                      <p id={styles["name"]} >
+                        {item.name}
+                      </p>
+                      <p id={styles["price"]}>{item.price}</p>
+                      <p id={styles["seller"]}>Zalora Cloth</p>
+                      <div class="rating">
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                        <img src="./images/home/Star/star.png" alt="" />
+                      </div>
+                    </div>
+                  </Card>
+                  {/* <div className="editDelete">
+                    <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
+                    <Button onClick={() => deleteProduct(item.id)}>Delete</Button>
+                  </div> */}
+                </div>
+              ))} 
+              {/* { products.map((item) => (
+                <div className="col mb-3">
+                  <Card className="card" height="278px" key={item.id}>
                     <div className="text-center">
                       <img style={{ height: "136px" }} src={item.photo} class="img-fluid" alt="produk" />
                     </div>
@@ -178,32 +211,7 @@ const Home = () => {
                     <Button onClick={() => deleteProduct(item.id)}>Delete</Button>
                   </div>
                 </div>
-              ))}
-              {/* {products ? (
-                products.map((item) => (
-                  <div className="col mb-3">
-                    <Card className="card" key={item.id}>
-                      <img src="assets/image/newproduk/fp.png" class="img-fluid" alt="..." />
-                      <div class="card-body ">
-                        <p class="card-text" id={item.id}>
-                          {item.name}
-                        </p>
-                        <p id="price">{item.price}</p>
-                        <p id="seller">Zalora Cloth</p>
-                        <div class="rating">
-                          <img src="assets/image/Star/Star.png" alt="" />
-                          <img src="assets/image/Star/Star.png" alt="" />
-                          <img src="assets/image/Star/Star.png" alt="" />
-                          <img src="assets/image/Star/Star.png" alt="" />
-                          <img src="assets/image/Star/Star.png" alt="" />
-                        </div>
-                      </div>
-                    </Card>
-                  </div>
-                ))
-              ) : (
-                <p>Produk kosong</p>
-              )} */}
+              ))} */}
             </div>
           </div>
         </section>
