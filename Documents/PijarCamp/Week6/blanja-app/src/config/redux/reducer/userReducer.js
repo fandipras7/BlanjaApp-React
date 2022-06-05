@@ -5,6 +5,7 @@ const initialState = {
     roleId: "",
   },
   isLoading: false,
+  response: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -16,8 +17,9 @@ const userReducer = (state = initialState, action) => {
   } else if (action.type === "USER_LOGIN_SUCCESS") {
     return {
       ...state,
-      user: action.payload,
+      user: action.payload.user,
       isLoading: false,
+      response: true,
     };
   } else {
     return state;

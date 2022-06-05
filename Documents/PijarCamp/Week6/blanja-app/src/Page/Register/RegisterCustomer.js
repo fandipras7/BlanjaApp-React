@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./registercust.module.css";
 import Button from "../../component/base/Button";
 import Input from "../../component/base/Input";
 import logoBlanja from "../image/logoBlanja.png";
 import { useNavigate } from "react-router-dom";
+import { sellerRegister } from "../../helper/addDataRegister";
 
 const RegisterCustomer = () => {
   const navigate = useNavigate();
+  const [formRegister, setFormRegister] = useState({
+    name: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    storeName: "",
+  });
+  console.log(formRegister);
+  const handleChange = (e) => {
+    setFormRegister({
+      ...formRegister,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleRegister = (e) => {
+    e.preventDefault();
+    sellerRegister(formRegister, navigate);
+  };
   return (
     <section className="vh-100">
       <div className="container h-100">
@@ -25,14 +44,16 @@ const RegisterCustomer = () => {
               </div>
             </div>
             <p className="text-end">Forgot password?</p>
-            <Input classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="Email"></Input>
-            <Input classWrapName="form-outline mb-2" type="text" id="nama" className="form-control form-control-lg" placeholder="Nama"></Input>
-            <Input classWrapName="form-outline mb-2" type="text" id="phone" className="form-control form-control-lg" placeholder="Phone Number"></Input>
-            <Input classWrapName="form-outline mb-2" type="text" id="store" className="form-control form-control-lg" placeholder="Store Name"></Input>
-            <Input classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>
-            <div className="d-grid">
-              <Button title="Primary" width="none" className={`btn btn-danger ${styles.btnSubmit}`}></Button>
-            </div>
+            <form onSubmit={handleRegister}>
+              <Input name="name" value={formRegister.name} onChange={handleChange} type="text" classWrapName="form-outline mb-2" id="name" className="form-control form-control-lg" placeholder="name"></Input>
+              <Input name="email" value={formRegister.email} onChange={handleChange} classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="email"></Input>
+              <Input name="phoneNumber" value={formRegister.phoneNumber} onChange={handleChange} classWrapName="form-outline mb-2" type="text" id="phone" className="form-control form-control-lg" placeholder="Phone Number"></Input>
+              <Input name="storeName" value={formRegister.storeName} onChange={handleChange} classWrapName="form-outline mb-2" type="text" id="store" className="form-control form-control-lg" placeholder="Store Name"></Input>
+              <Input name="password" value={formRegister.password} onChange={handleChange} classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>
+              <div className="d-grid">
+                <Button title="Primary" width="none" className={`btn btn-danger ${styles.btnSubmit}`}></Button>
+              </div>
+            </form>
             <p className="text-center mt-3">
               Already have a Tokopedia account?{" "}
               <span onClick={() => navigate("/Login")} className="text-danger">
