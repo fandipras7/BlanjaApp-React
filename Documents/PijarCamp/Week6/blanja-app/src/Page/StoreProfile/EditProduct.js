@@ -8,8 +8,17 @@ import { useDispatch } from "react-redux";
 
 const EditProduct = () => {
   const { id } = useParams();
-  const [products, setProducts] = useState([]);
-  const dispatch = useDispatch()
+  const [dataProduct, setDataProduct] = useState({
+    name: "",
+    price: "",
+    stock: "",
+    description: "",
+  });
+  const [condition, setCondition] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [image, setImage] = useState("");
+
+  const dispatch = useDispatch();
   async function fetchData() {
     try {
       const result = await axios({
@@ -17,22 +26,23 @@ const EditProduct = () => {
         baseURL: "http://localhost:4000/v1",
         url: `/products/${id}`,
       });
-      // console.log(result.data.data[5].photo);
-      setProducts(result.data.data);
+      const products = result.data.data;
+      setDataProduct({
+        name: products.name,
+        price: products.price,
+        stock: products.stock,
+        condition: products.condition,
+        description: products.description,
+      });
+      // setPhoto(products.photo);
+      setImage(products.photo);
     } catch (error) {
       console.log(error);
     }
   }
   //   console.log(products);
   const navigate = useNavigate();
-  const [dataProduct, setDataProduct] = useState({
-    name: products.name,
-    price: products.price,
-    stock: products.stock,
-    condition: products.condition,
-    description: products.description,
-  });
-  console.log(dataProduct);
+  console.log(dataProduct.name);
 
   const handleChange = (e) => {
     setDataProduct({
@@ -41,13 +51,6 @@ const EditProduct = () => {
     });
   };
 
-  const handleRadio = (e) => {
-    setDataProduct({
-      ...dataProduct,
-      condition: e.target.value,
-    });
-    // console.log(e.target.value);
-  };
 
   const handleChangeNumber = (e) => {
     setDataProduct({
@@ -56,10 +59,22 @@ const EditProduct = () => {
     });
   };
 
+  const uploadImage = (e) => {
+    const file = e.target.files[0];
+    setPhoto(file);
+    setImage(URL.createObjectURL(file));
+  };
+
   const handleUpdate = (e) => {
-    // console.log(dataProduct);
+    const data = new FormData();
+    data.append("name", dataProduct.name);
+    data.append("price", dataProduct.price);
+    data.append("stock", dataProduct.stock);
+    data.append("condition", condition);
+    data.append("description", dataProduct.description);
+    data.append("photo", photo);
     e.preventDefault();
-    dispatch(editProduct(dataProduct, navigate, id))
+    dispatch(editProduct(data, navigate, id));
     // axios
     //   .put(`http://localhost:4000/v1/products/${id}`, dataProduct)
     //   .then((res) => {
@@ -155,26 +170,27 @@ const EditProduct = () => {
                             <span className="fw-light">Unit Price</span>
                           </label>
                           <div className="col-sm-4">
-                            <input type="text" className="form-control" value={dataProduct.price === undefined ? products.price : dataProduct.price} name="price" id="price" onChange={handleChangeNumber} />
+                            <input type="text" className="form-control" value={dataProduct.price} name="price" id="price" onChange={handleChangeNumber} />
+                            {/* <input type="text" className="form-control" value={dataProduct.price === undefined ? products.price : dataProduct.price} name="price" id="price" onChange={handleChangeNumber} /> */}
                           </div>
                           <label for="stock" className="col-sm-2 col-form-label">
                             <span className="fw-light">Stock</span>
                           </label>
                           <div className="col-sm-4">
-                            <input type="text" placeholder="unit" value={dataProduct.stock === undefined ? products.stock : dataProduct.stock} className="form-control" name="stock" id="stock" onChange={handleChangeNumber} />
+                            <input type="text" placeholder="unit" value={dataProduct.stock} className="form-control" name="stock" id="stock" onChange={handleChangeNumber} />
                           </div>
                           <label for="stock" className="col-sm-2 col-form-label">
                             <span className="fw-light">Stock</span>
                           </label>
                           <div className="col-sm-4">
                             <div className="form-check form-check-inline">
-                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked id="inlineRadio1" value="Baru" onChange={handleRadio} />
+                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked={condition === "Baru"} id="inlineRadio1" value="Baru" onChange={(e) => setCondition(e.target.value)} />
                               <label className="form-check-label" htmlFor="inlineRadio1">
                                 Baru
                               </label>
                             </div>
                             <div className="form-check form-check-inline">
-                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked id="inlineRadio2" value="Bekas" onChange={handleRadio} />
+                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked={condition === "Bekas"} id="inlineRadio2" value="Bekas" onChange={(e) => setCondition(e.target.value)} />
                               <label className="form-check-label" htmlFor="inlineRadio2">
                                 Bekas
                               </label>
@@ -193,7 +209,7 @@ const EditProduct = () => {
                             <div className="d-flex align-items-center">
                               <div className={"col-3 justify-content-center align-items-center ms-3 mt-5 mb-5 " + styles.main_photo}>
                                 <div>
-                                  <img className="mx-auto img-fluid" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                                 <p id={styles["maintext"]} className="fw-light">
                                   Foto Utama
@@ -201,31 +217,32 @@ const EditProduct = () => {
                               </div>
                               <div className={"col-2 justify-content-center align-items-center ms-2 " + styles.others_photo}>
                                 <div>
-                                  <img className="mx-auto" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                               </div>
                               <div className={"col-2 justify-content-center align-items-center ms-2 " + styles.others_photo}>
                                 <div>
-                                  <img className="mx-auto" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                               </div>
                               <div className={"col-2 justify-content-center align-items-center ms-2 " + styles.others_photo}>
                                 <div>
-                                  <img className="mx-auto" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                               </div>
 
                               <div className={"col-2 justify-content-center align-items-center ms-2 " + styles.others_photo}>
                                 <div>
-                                  <img className="mx-auto" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                               </div>
                             </div>
                             <hr />
                             <div className="d-flex justify-content-center">
-                              <button type="button" className="btnUpdate btn-light rounded-pill">
+                              {/* <button type="button" className="btnUpdate btn-light rounded-pill">
                                 Update Photo
-                              </button>
+                              </button> */}
+                              <input type="file" className="form-control btn" accept="image/" onChange={(e) => uploadImage(e)} />
                             </div>
                           </div>
                         </div>
