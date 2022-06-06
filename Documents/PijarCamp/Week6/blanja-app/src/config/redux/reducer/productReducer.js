@@ -28,6 +28,13 @@ const productReducer = (state = initialState, action) => {
        return item.id === action.payload.product.id ? action.payload.product : item;
       })
     }
+  } else if (action.type === "DELETE_PRODUCT"){
+    return {
+      ...state,
+      product: state.product.filter((item)=>{
+        return item.id !== action.payload.id
+      })
+    }
   } else {
     return state;
   }

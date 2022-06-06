@@ -20,7 +20,7 @@ export const getData = () => async (dispatch) => {
 
 export const addProduct = (dataform, navigate) => async (dispatch) => {
   try {
-    const result = await axios.post("http://localhost:4000/v1/products", dataform, {'content-type': 'multipart/form-data'});
+    const result = await axios.post("http://localhost:4000/v1/products", dataform, { "content-type": "multipart/form-data" });
     // await axios(
     //   {
     //     method: "POST",
@@ -41,12 +41,36 @@ export const addProduct = (dataform, navigate) => async (dispatch) => {
 
 export const editProduct = (dataform, navigate, id) => async (dispatch) => {
   try {
-    const result = await axios.put(`http://localhost:4000/v1/products/${id}`, dataform)
+    const result = await axios.put(`http://localhost:4000/v1/products/${id}`, dataform);
     const product = result.data.data;
-    dispatch({type: "EDIT_PRODUCT", payload : { product }});
+    dispatch({ type: "EDIT_PRODUCT", payload: { product } });
     navigate("/profile/storeprofile/myproduct");
   } catch (error) {
     console.log(error);
-    alert("gagal menambah produk")
+    alert("gagal menambah produk");
   }
-}
+};
+
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`http://localhost:4000/v1/products/${id}`);
+    dispatch({ type: "DELETE_PRODUCT", payload: { id } });
+  } catch (error) {
+    console.log(error);
+    alert("Gagal menghapus produk");
+  }
+};
+
+export const searchDataProduct = async (searchParams, data) => {
+  try {
+    const result = await axios({
+      method: "GET",
+      baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
+      url: `products?${searchParams}`,
+    });
+    // console.log(result.data.data[5].photo);
+    const products = result.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

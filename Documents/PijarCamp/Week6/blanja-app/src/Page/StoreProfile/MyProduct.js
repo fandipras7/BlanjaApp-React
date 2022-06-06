@@ -8,38 +8,40 @@ import homeMenu from "../image/profile/homeMenu.png";
 import productMenu from "../image/profile/package_1.png";
 import orderMenu from "../image/profile/cart_min.png";
 import searchbtn from "../image/profile/search.png";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct } from "../../config/redux/action/productAction";
 const MyProduct = () => {
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
-  const { isGeting, product } = useSelector((state) => state.product);
+  const { product } = useSelector((state) => state.product);
+  // console.log(product);
   const navigate = useNavigate();
-  async function fetchData() {
-    try {
-      const result = await axios({
-        method: "GET",
-        baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
-        url: /*`products?${searchParams}`*/ "/products?page=1&limit=10",
-      });
-      // console.log(result.data.data[5].photo);
-      setProducts(result.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  const deleteProduct = (id) => {
-    axios.delete(`http://localhost:4000/v1/products/${id}`).then(() => {
-      alert("delete success");
-      navigate("/myproduct");
-    });
-  };
+  // async function fetchData() {
+  //   try {
+  //     const result = await axios({
+  //       method: "GET",
+  //       baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
+  //       url: /*`products?${searchParams}`*/ "/products?page=1&limit=10",
+  //     });
+  //     // console.log(result.data.data[5].photo);
+  //     setProducts(result.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  // const deleteProduct = (id) => {
+  //   axios.delete(`http://localhost:4000/v1/products/${id}`).then(() => {
+  //     alert("delete success");
+  //     navigate("/myproduct");
+  //   });
+  // };
 
   useEffect(() => {
-    fetchData();
-  }, [isGeting]);
-  console.log(isGeting);
-  console.log(product);
+    // fetchData();
+    setProducts(product);
+  }, [product]);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>
@@ -134,7 +136,7 @@ const MyProduct = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {products ? (
+                            {products.length > 0 ? (
                               products.map((item) => (
                                 <tr>
                                   <th scope="row">{item.name}</th>
@@ -142,13 +144,13 @@ const MyProduct = () => {
                                   <td>{item.stock}</td>
                                   <div className="editDelete">
                                     <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
-                                    <Button onClick={() => deleteProduct(item.id)}>Delete</Button>
+                                    <Button onClick={() => dispatch(deleteProduct(item.id))}>Delete</Button>
                                   </div>
                                 </tr>
                               ))
                             ) : (
                               <div>
-                                <p>Page Not Found</p>
+                                <p>Belum ada produk</p>
                               </div>
                             )}
                             {/* <tr>

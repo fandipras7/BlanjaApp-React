@@ -19,9 +19,9 @@ const Selling = (id) => {
     stock: "",
     description: "",
   });
-  const [condition, setCondition] = useState("")
-  const [photo, setPhoto] = useState("https://fakeimg.pl/350x250/")
-  const [image, setImage] = useState("https://fakeimg.pl/350x250/")
+  const [condition, setCondition] = useState("");
+  const [photo, setPhoto] = useState("https://fakeimg.pl/350x250/");
+  const [image, setImage] = useState("https://fakeimg.pl/350x250/");
 
   const handleChange = (e) => {
     setDataProduct({
@@ -29,7 +29,6 @@ const Selling = (id) => {
       [e.target.name]: e.target.value,
     });
   };
-
 
   const handleChangeNumber = (e) => {
     setDataProduct({
@@ -39,20 +38,19 @@ const Selling = (id) => {
   };
 
   const uploadImage = (e) => {
-    const file = e.target.files[0]
-    setPhoto(file)
-    setImage(URL.createObjectURL(file))
-
-  }
+    const file = e.target.files[0];
+    setPhoto(file);
+    setImage(URL.createObjectURL(file));
+  };
 
   const handleAddproduct = (e) => {
     const data = new FormData();
-    data.append("name", dataProduct.name)
-    data.append("price", dataProduct.price)
-    data.append("stock", dataProduct.stock)
-    data.append("condition", dataProduct.condition)
-    data.append("description", dataProduct.description)
-    data.append("photo", photo)
+    data.append("name", dataProduct.name);
+    data.append("price", dataProduct.price);
+    data.append("stock", dataProduct.stock);
+    data.append("condition", dataProduct.condition);
+    data.append("description", dataProduct.description);
+    data.append("photo", photo);
     e.preventDefault();
 
     dispatch(addProduct(data, navigate));
@@ -154,13 +152,13 @@ const Selling = (id) => {
                           </label>
                           <div className="col-sm-4">
                             <div className="form-check form-check-inline">
-                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked={condition === "Baru"} id="inlineRadio1" value="Baru" onChange={(e)=>setCondition(e.target.value)} />
+                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked={condition === "Baru"} id="inlineRadio1" value="Baru" onChange={(e) => setCondition(e.target.value)} />
                               <label className="form-check-label" for="inlineRadio1">
                                 Baru
                               </label>
                             </div>
                             <div className="form-check form-check-inline">
-                              <input className="form-check-input" type="radio" name="inlineRadioOptions"  checked={condition === "Bekas"} id="inlineRadio2" value="Bekas" onChange={(e)=>setCondition(e.target.value)} />
+                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked={condition === "Bekas"} id="inlineRadio2" value="Bekas" onChange={(e) => setCondition(e.target.value)} />
                               <label className="form-check-label" for="inlineRadio2">
                                 Bekas
                               </label>
@@ -212,7 +210,7 @@ const Selling = (id) => {
                               {/* <button type="button" className="btnUpdate btn-light rounded-pill">
                                 Update Photo
                               </button> */}
-                              <input type="file" className="form-control btn" accept="image/" onChange={(e)=>uploadImage(e)}/>
+                              <input type="file" className="form-control btn" accept="image/" onChange={(e) => uploadImage(e)} />
                             </div>
                           </div>
                         </div>

@@ -5,13 +5,14 @@ import styles from "./home.module.css";
 import Card from "../../component/base/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../config/redux/action/productAction";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Home = () => {
+  const [searchParams, setSearchParams] = useSearchParams({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { product, isGeting } = useSelector((state) => state.product);
-    function moveToDetailProduct(id) {
+  function moveToDetailProduct(id) {
     navigate(`/Product/${id}`);
   }
 
@@ -118,7 +119,9 @@ const Home = () => {
                       <img style={{ height: "136px" }} src={item.photo} class="img-fluid" alt="produk" />
                     </div>
                     <div className="card-body ">
-                      <p id={styles["name"]} onClick={()=>moveToDetailProduct(item.id)}>{item.name}</p>
+                      <p id={styles["name"]} onClick={() => moveToDetailProduct(item.id)}>
+                        {item.name}
+                      </p>
                       <p id={styles["price"]}>{item.price}</p>
                       <p id={styles["seller"]}>{item.brand}</p>
                       <div class="rating">
