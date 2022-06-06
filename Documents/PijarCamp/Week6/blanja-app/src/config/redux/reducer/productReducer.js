@@ -21,6 +21,13 @@ const productReducer = (state = initialState, action) => {
       ...state,
       product: [...state.product, action.payload.product],
     };
+  } else if (action.type === "EDIT_PRODUCT") {
+    return {
+      ...state,
+      product: state.product.map((item)=>{
+       return item.id === action.payload.product.id ? action.payload.product : item;
+      })
+    }
   } else {
     return state;
   }

@@ -3,10 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../component/module/navbar";
 import styles from "./editProduct.module.css";
 import axios from "axios";
+import { editProduct } from "../../config/redux/action/productAction";
+import { useDispatch } from "react-redux";
 
 const EditProduct = () => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch()
   async function fetchData() {
     try {
       const result = await axios({
@@ -54,22 +57,24 @@ const EditProduct = () => {
   };
 
   const handleUpdate = (e) => {
-    console.log(dataProduct);
+    // console.log(dataProduct);
     e.preventDefault();
-    axios
-      .put(`http://localhost:4000/v1/products/${id}`, dataProduct)
-      .then((res) => {
-        console.log(res.data);
-        navigate(`/Product/${id}`);
-      })
-      .catch((e) => {
-        alert(e.reponse.data.message);
-      });
+    dispatch(editProduct(dataProduct, navigate, id))
+    // axios
+    //   .put(`http://localhost:4000/v1/products/${id}`, dataProduct)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     navigate(`/Product/${id}`);
+    //   })
+    //   .catch((e) => {
+    //     alert(e.reponse.data.message);
+    //   });
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+  console.log(dataProduct);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>
@@ -135,7 +140,7 @@ const EditProduct = () => {
                             <span className="fw-light">Name Of Goods</span>
                           </label>
                           <div className="col-sm-4">
-                            <input type="text" className="form-control" value={dataProduct.name === undefined ? products.name : dataProduct.name} name="name" id="productName" onChange={handleChange} />
+                            <input type="text" className="form-control" value={dataProduct.name} name="name" id="productName" onChange={handleChange} />
                           </div>
                         </li>
                       </ul>

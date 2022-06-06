@@ -17,9 +17,11 @@ const Selling = (id) => {
     name: "",
     price: "",
     stock: "",
-    condition: "",
     description: "",
   });
+  const [condition, setCondition] = useState("")
+  const [photo, setPhoto] = useState("https://fakeimg.pl/350x250/")
+  const [image, setImage] = useState("https://fakeimg.pl/350x250/")
 
   const handleChange = (e) => {
     setDataProduct({
@@ -28,13 +30,6 @@ const Selling = (id) => {
     });
   };
 
-  const handleRadio = (e) => {
-    setDataProduct({
-      ...dataProduct,
-      condition: e.currentTarget.value,
-    });
-    // console.log(e.target.value);
-  };
 
   const handleChangeNumber = (e) => {
     setDataProduct({
@@ -43,24 +38,29 @@ const Selling = (id) => {
     });
   };
 
+  const uploadImage = (e) => {
+    const file = e.target.files[0]
+    setPhoto(file)
+    setImage(URL.createObjectURL(file))
+
+  }
+
   const handleAddproduct = (e) => {
+    const data = new FormData();
+    data.append("name", dataProduct.name)
+    data.append("price", dataProduct.price)
+    data.append("stock", dataProduct.stock)
+    data.append("condition", dataProduct.condition)
+    data.append("description", dataProduct.description)
+    data.append("photo", photo)
     e.preventDefault();
-    dispatch(addProduct(dataProduct, navigate));
+
+    dispatch(addProduct(data, navigate));
   };
 
-  // const handleAddproduct = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:4000/v1/products", dataProduct)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       navigate("/Home");
-  //     })
-  //     .catch((e) => {
-  //       alert(e.reponse.data.message);
-  //     });
-  // };
   console.log(dataProduct);
+  console.log(condition);
+  console.log(photo);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>
@@ -154,13 +154,13 @@ const Selling = (id) => {
                           </label>
                           <div className="col-sm-4">
                             <div className="form-check form-check-inline">
-                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked id="inlineRadio1" value="Baru" onChange={handleRadio} />
+                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked={condition === "Baru"} id="inlineRadio1" value="Baru" onChange={(e)=>setCondition(e.target.value)} />
                               <label className="form-check-label" for="inlineRadio1">
                                 Baru
                               </label>
                             </div>
                             <div className="form-check form-check-inline">
-                              <input className="form-check-input" type="radio" name="inlineRadioOptions" checked id="inlineRadio2" value="Bekas" onChange={handleRadio} />
+                              <input className="form-check-input" type="radio" name="inlineRadioOptions"  checked={condition === "Bekas"} id="inlineRadio2" value="Bekas" onChange={(e)=>setCondition(e.target.value)} />
                               <label className="form-check-label" for="inlineRadio2">
                                 Bekas
                               </label>
@@ -179,7 +179,7 @@ const Selling = (id) => {
                             <div className="d-flex align-items-center">
                               <div className={"col-3 justify-content-center align-items-center ms-3 mt-5 mb-5 " + styles.main_photo}>
                                 <div>
-                                  <img className="mx-auto img-fluid" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                                 <p id={styles["maintext"]} className="fw-light">
                                   Foto Utama
@@ -187,31 +187,32 @@ const Selling = (id) => {
                               </div>
                               <div className={"col-2 justify-content-center align-items-center ms-2 " + styles.others_photo}>
                                 <div>
-                                  <img className="mx-auto" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                               </div>
                               <div className={"col-2 justify-content-center align-items-center ms-2 " + styles.others_photo}>
                                 <div>
-                                  <img className="mx-auto" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                               </div>
                               <div className={"col-2 justify-content-center align-items-center ms-2 " + styles.others_photo}>
                                 <div>
-                                  <img className="mx-auto" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                               </div>
 
                               <div className={"col-2 justify-content-center align-items-center ms-2 " + styles.others_photo}>
                                 <div>
-                                  <img className="mx-auto" src="./images/selling/boxPhoto.png" alt="" />
+                                  <img className="mx-auto img-fluid" src={image} alt="" />
                                 </div>
                               </div>
                             </div>
                             <hr />
                             <div className="d-flex justify-content-center">
-                              <button type="button" className="btnUpdate btn-light rounded-pill">
+                              {/* <button type="button" className="btnUpdate btn-light rounded-pill">
                                 Update Photo
-                              </button>
+                              </button> */}
+                              <input type="file" className="form-control btn" accept="image/" onChange={(e)=>uploadImage(e)}/>
                             </div>
                           </div>
                         </div>

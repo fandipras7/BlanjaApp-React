@@ -11,6 +11,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { product, isGeting } = useSelector((state) => state.product);
+    function moveToDetailProduct(id) {
+    navigate(`/Product/${id}`);
+  }
 
   useEffect(() => {
     // fetchData();
@@ -115,9 +118,9 @@ const Home = () => {
                       <img style={{ height: "136px" }} src={item.photo} class="img-fluid" alt="produk" />
                     </div>
                     <div className="card-body ">
-                      <p id={styles["name"]}>{item.name}</p>
+                      <p id={styles["name"]} onClick={()=>moveToDetailProduct(item.id)}>{item.name}</p>
                       <p id={styles["price"]}>{item.price}</p>
-                      <p id={styles["seller"]}>Zalora Cloth</p>
+                      <p id={styles["seller"]}>{item.brand}</p>
                       <div class="rating">
                         <img src="./images/home/Star/star.png" alt="" />
                         <img src="./images/home/Star/star.png" alt="" />

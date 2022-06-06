@@ -20,7 +20,7 @@ export const getData = () => async (dispatch) => {
 
 export const addProduct = (dataform, navigate) => async (dispatch) => {
   try {
-    const result = await axios.post("http://localhost:4000/v1/products", dataform);
+    const result = await axios.post("http://localhost:4000/v1/products", dataform, {'content-type': 'multipart/form-data'});
     // await axios(
     //   {
     //     method: "POST",
@@ -38,3 +38,15 @@ export const addProduct = (dataform, navigate) => async (dispatch) => {
     alert("Gagal menambah produk");
   }
 };
+
+export const editProduct = (dataform, navigate, id) => async (dispatch) => {
+  try {
+    const result = await axios.put(`http://localhost:4000/v1/products/${id}`, dataform)
+    const product = result.data.data;
+    dispatch({type: "EDIT_PRODUCT", payload : { product }});
+    navigate("/profile/storeprofile/myproduct");
+  } catch (error) {
+    console.log(error);
+    alert("gagal menambah produk")
+  }
+}
