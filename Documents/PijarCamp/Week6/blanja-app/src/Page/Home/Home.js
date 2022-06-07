@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import Button from "../../component/base/Button";
 import Navbar from "../../component/module/navbar";
 import styles from "./home.module.css";
@@ -6,25 +6,57 @@ import Card from "../../component/base/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../config/redux/action/productAction";
 import { useNavigate, useSearchParams } from "react-router-dom";
+// import axios from "axios";
 
 const Home = () => {
+  // const { search, isSearching } = useSelector((state) => state.search);
+  const [search, setSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams({});
+  // const [keyword, setKeyword] = useState("");
+  // const [product, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { product, isGeting } = useSelector((state) => state.product);
+  const { product } = useSelector((state) => state.product);
   function moveToDetailProduct(id) {
     navigate(`/Product/${id}`);
   }
+  // const angka = [1, 2, 3, 4, 5];
+  // setProducts();
+
+  const handleSearch = () => {
+    setSearchParams({ search: search });
+  };
+  // search.length > 0 && handleSearch();
+  // async function searchData() {
+  //   console.log("apakah ini jalan");
+  //   // setSearchParams({ search: search });
+
+  //   // setKeyword(search);
+  //   // console.log(searchParams);
+  //   try {
+  //     const result = await axios({
+  //       method: "GET",
+  //       baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
+  //       url: `products?${searchParams}`,
+  //     });
+  //     // console.log(result.data.data[5].photo);
+  //     setProducts(result.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  // searchData();
 
   useEffect(() => {
-    // fetchData();
-    dispatch(getData());
-  }, []);
-  console.log(isGeting);
+    dispatch(getData(searchParams));
+    // searchData();
+    console.log("useEffect jalan");
+  }, [searchParams]);
   return (
     <div>
       {/* <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar> */}
-      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top"></Navbar>
+      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar>
       <main>
         {/* <p>{searchParams}</p> */}
         <section className={styles.caraousell}>

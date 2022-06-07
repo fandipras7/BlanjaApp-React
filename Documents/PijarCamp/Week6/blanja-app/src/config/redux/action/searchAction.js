@@ -1,7 +1,6 @@
-export const searchProduct = (data) => {
-  const keyword = data;
+export const searchProduct = (keyword, searchParams) => {
   return {
     type: "SEARCHING_PRODUCT",
-    payload: keyword,
+    payload: { keyword: keyword, searchParams },
   };
 };

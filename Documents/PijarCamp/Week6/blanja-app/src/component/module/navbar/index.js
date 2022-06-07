@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./navbar.module.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
@@ -10,19 +10,21 @@ import searchImg from "./img/search.png";
 import { useDispatch, useSelector } from "react-redux";
 import { searchProduct } from "../../../config/redux/action/searchAction";
 
-const Navbar = ({ className, onChange }) => {
-  const navigate = useNavigate();
-  const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
+const Navbar = ({ className, onChange, onClickButton }) => {
+  // const navigate = useNavigate();
+  // const [search, setSearch] = useState("");
+  // const [searchParams, setSearchParams] = useSearchParams({});
+  // const dispatch = useDispatch();
   const { isLogin } = useSelector((state) => state.user);
   const [tampilkan, setTampilkan] = useState("");
-  console.log(search);
-  const onClickButton = () => {
-    if (search.length > 0) {
-      dispatch(searchProduct(search));
-      navigate("/home");
-    }
-  };
+  // console.log(search);
+  // const onClickButton = () => {
+  //   if (search.length > 0) {
+  //     setSearchParams({ search: search });
+  //     dispatch(searchProduct(search, searchParams));
+  //     navigate("/home");
+  //   }
+  // };
   return (
     <nav className={className}>
       <div className={`container ${styles.mybar}`}>
@@ -31,7 +33,7 @@ const Navbar = ({ className, onChange }) => {
           <h5 className="mt-2">Blanja</h5>
         </div>
         <form className={"d-flex ms-auto " + styles.searchAndSort}>
-          <Input className={`${styles.form_control} me-2`} border="1px solid grey" type="search" onChange={(e) => setSearch(e.target.value)} placeholder="Search"></Input>
+          <Input className={`${styles.form_control} me-2`} border="1px solid grey" type="search" onChange={onChange} placeholder="Search"></Input>
           <Button className={styles.btnSearch} onClick={onClickButton} type="button" border="none" backgroundColor="white">
             <img src={searchImg} alt="" />
           </Button>

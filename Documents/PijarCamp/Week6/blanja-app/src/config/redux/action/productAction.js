@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const getData = () => async (dispatch) => {
+export const getData = (searchParams) => async (dispatch) => {
   try {
     dispatch({ type: "GET_DATA_PENDING" });
     // const result = await axios.get('http://localhost:4000/v1/products')
     const result = await axios({
       method: "GET",
       baseURL: process.env.REACT_APP_API_BLANJA,
-      url: "/products",
+      url: `/products?${searchParams}`,
     });
     const product = result.data.data;
     console.log(product);
