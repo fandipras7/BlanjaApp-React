@@ -5,7 +5,7 @@ import Button from "../../component/base/Button";
 import Input from "../../component/base/Input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginSeller } from "../../config/redux/action/userAction";
+import { loginSeller, loginUser } from "../../config/redux/action/userAction";
 
 const LoginCustomer = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,8 @@ const LoginCustomer = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(loginSeller(formLogin, navigate));
+    // dispatch(loginSeller(formLogin, navigate));
+    dispatch(loginUser(formLogin, navigate));
   };
   // console.log(formLogin);
   return (

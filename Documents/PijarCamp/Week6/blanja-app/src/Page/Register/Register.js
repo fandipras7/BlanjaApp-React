@@ -4,14 +4,21 @@ import logoBlanja from "./logoBlanja.png";
 import Button from "../../component/base/Button";
 import Input from "../../component/base/Input";
 import { useNavigate } from "react-router-dom";
-import { userRegister } from "../../helper/addDataRegister";
+import { sellerRegister, userRegister } from "../../helper/addDataRegister";
 
 const Register = () => {
   const navigate = useNavigate();
+  // const [formRegister, setFormRegister] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  // });
   const [formRegister, setFormRegister] = useState({
     name: "",
     email: "",
     password: "",
+    phoneNumber: "",
+    storeName: "",
   });
   console.log(formRegister);
   const handleChange = (e) => {
@@ -22,7 +29,8 @@ const Register = () => {
   };
   const handleRegister = (e) => {
     e.preventDefault();
-    userRegister(formRegister, navigate);
+    // userRegister(formRegister, navigate);
+    sellerRegister(formRegister, navigate)
   };
   return (
     <section className="vh-100">
@@ -43,8 +51,13 @@ const Register = () => {
             </div>
             <p className="text-end">Forgot password?</p>
             <form onSubmit={handleRegister}>
+              {/* <Input name="name" value={formRegister.name} onChange={handleChange} type="text" classWrapName="form-outline mb-2" id="name" className="form-control form-control-lg" placeholder="name"></Input>
+              <Input name="email" value={formRegister.email} onChange={handleChange} classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="email"></Input>
+              <Input name="password" value={formRegister.password} onChange={handleChange} classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input> */}
               <Input name="name" value={formRegister.name} onChange={handleChange} type="text" classWrapName="form-outline mb-2" id="name" className="form-control form-control-lg" placeholder="name"></Input>
               <Input name="email" value={formRegister.email} onChange={handleChange} classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="email"></Input>
+              <Input name="phoneNumber" value={formRegister.phoneNumber} onChange={handleChange} classWrapName="form-outline mb-2" type="text" id="phone" className="form-control form-control-lg" placeholder="Phone Number"></Input>
+              <Input name="storeName" value={formRegister.storeName} onChange={handleChange} classWrapName="form-outline mb-2" type="text" id="store" className="form-control form-control-lg" placeholder="Store Name"></Input>
               <Input name="password" value={formRegister.password} onChange={handleChange} classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>
               <div className="d-grid">
                 <Button title="Primary" width="none" className={`btn btn-danger ${styles.btnSubmit}`}></Button>

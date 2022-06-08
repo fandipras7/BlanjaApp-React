@@ -24,7 +24,7 @@ const Router = () => {
         <Route path="/LoginCustomer" element={<LoginCustomer />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/RegisterCustomer" element={<RegisterCustomer />} />
-        <Route path="/Profile/StoreProfile/Selling" element={<Selling />} />
+        <Route path="/StoreProfile/Selling" element={<Selling />} />
         <Route path="/Edit/:id" element={<EditProduct />} />
         {/* <Route path="/Product" element={<Product />} /> */}
         <Route path="/Product/:id" element={<Product />} />
@@ -32,14 +32,14 @@ const Router = () => {
           path="/Mybag"
           element={
             <RequireAuth>
-              <Bag />
+               <Bag />
             </RequireAuth>
           }
         ></Route>
         <Route path="/Checkout" element={<Checkout />} />
         <Route path="/Profile" element={<Profile />} />
-        <Route path="/Profile/StoreProfile" element={<StoreProfile />} />
-        <Route path="/Profile/StoreProfile/myproduct" element={<MyProduct />} />
+        <Route path="/StoreProfile" element={<StoreProfile />} />
+        <Route path="/StoreProfile/myproduct" element={<MyProduct />} />
       </Routes>
     </BrowserRouter>
   );

@@ -99,7 +99,7 @@ const MyProduct = () => {
                   <div className="col-12 col-lg-10 mt-5">
                     <Card className={styles.card + " p-4"}>
                       <h5>My Product</h5>
-                      <p>Manage your profile information</p>
+                      {/* <p>Manage your profile information</p> */}
                       <div className="row">
                         <div className="table-responsive-sm">
                           <table className="table">
@@ -143,6 +143,7 @@ const MyProduct = () => {
                                   <td>{item.price}</td>
                                   <td>{item.stock}</td>
                                   <div className="editDelete">
+                                  <Button onClick={() => navigate(`/storeprofile/selling`)}>add</Button>
                                     <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
                                     <Button onClick={() => dispatch(deleteProduct(item.id))}>Delete</Button>
                                   </div>

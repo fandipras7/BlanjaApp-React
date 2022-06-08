@@ -169,7 +169,7 @@ const Home = () => {
                     <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
                     <Button onClick={() => deleteProduct(item.id)}>Delete</Button>
                   </div> */}
-                  <Button onClick={() => navigate(`/profile/storeprofile/myproduct`)}>All Product</Button>
+                  {/* <Button onClick={() => navigate(`/profile/storeprofile/myproduct`)}>All Product</Button> */}
                 </div>
               ))}
             </div>

@@ -5,7 +5,7 @@ import Input from "../../component/base/Input";
 import logoPic from "../image/logoBlanja.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../config/redux/action/userAction";
+import { loginSeller, loginUser } from "../../config/redux/action/userAction";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,8 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(loginUser(formLogin, navigate));
+    // dispatch(loginUser(formLogin, navigate));
+    dispatch(loginSeller(formLogin, navigate));
   };
   console.log(formLogin);
   return (

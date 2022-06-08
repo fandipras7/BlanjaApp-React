@@ -10,7 +10,7 @@ import menuOrder from "../image/profile/cart_min.png";
 import { addProduct } from "../../config/redux/action/productAction";
 import { useDispatch } from "react-redux";
 
-const Selling = (id) => {
+const Selling = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dataProduct, setDataProduct] = useState({

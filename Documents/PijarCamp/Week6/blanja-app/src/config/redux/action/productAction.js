@@ -32,7 +32,7 @@ export const addProduct = (dataform, navigate) => async (dispatch) => {
     const product = result.data.data;
     alert("berhasil menambah produk");
     dispatch({ type: "ADD_PRODUCT", payload: { product } });
-    navigate("/profile/storeprofile/myproduct");
+    navigate("/storeprofile/myproduct");
   } catch (error) {
     console.log(error);
     alert("Gagal menambah produk");
@@ -44,7 +44,7 @@ export const editProduct = (dataform, navigate, id) => async (dispatch) => {
     const result = await axios.put(`http://localhost:4000/v1/products/${id}`, dataform);
     const product = result.data.data;
     dispatch({ type: "EDIT_PRODUCT", payload: { product } });
-    navigate("/profile/storeprofile/myproduct");
+    navigate("/storeprofile/myproduct");
   } catch (error) {
     console.log(error);
     alert("gagal menambah produk");

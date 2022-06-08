@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
+import { Navigate, NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./navbar.module.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchProduct } from "../../../config/redux/action/searchAction";
 
 const Navbar = ({ className, onChange, onClickButton }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const [search, setSearch] = useState("");
   // const [searchParams, setSearchParams] = useSearchParams({});
   // const dispatch = useDispatch();
@@ -59,7 +59,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
           {isLogin ? (
             <ul className="navbar-nav ms-auto ps-2 align-items-center">
               <li className="nav-item mt-2">
-                <NavLink to="/">
+                <NavLink to="/Mybag">
                   <Button border="none" backgroundColor="white" className="btn btn-cart" type="submit">
                     <img src={cartPic} alt="" />
                   </Button>
@@ -80,7 +80,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
                 </NavLink>
               </li>
               <li className="nav-item ms-2 mt-2">
-                <NavLink to="/Profile/StoreProfile/Selling">
+                <NavLink to="/StoreProfile/myproduct">
                   <Button border="none" backgroundColor="white" className="btn btn-light">
                     <img className={styles.ava} src="./images/navbar/avatar.png" alt="" />
                   </Button>
@@ -90,7 +90,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
           ) : (
             <ul className="navbar-nav ms-auto ps-2 align-items-center">
               <li className="nav-item">
-                <NavLink to="/">
+                <NavLink to="/Mybag">
                   <Button border="none" backgroundColor="white" className="btn btn-cart" type="submit">
                     <img src={cartPic} alt="" />
                   </Button>
@@ -103,7 +103,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
               </li>
               <li className="nav-item ms-2 mt-2">
                 <NavLink to="/Register">
-                  <Button className={styles.btnSignIn}>Sign In</Button>
+                  <Button className={styles.btnSignIn}>Sign Up</Button>
                 </NavLink>
               </li>
             </ul>
