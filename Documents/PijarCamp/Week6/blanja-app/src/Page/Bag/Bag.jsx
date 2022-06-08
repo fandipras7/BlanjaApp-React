@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../component/module/navbar";
 import styles from "./bag.module.css";
 import Button from "../../component/base/Button";
 import Card from "../../component/base/card";
 import { useDispatch, useSelector } from "react-redux";
-import { addPlus } from "../../config/redux/action/bagAction";
+import { addPlus, deleteProdct, getProductBag, minQty } from "../../config/redux/action/bagAction";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from 'react-router-dom'
 
 const Bag = () => {
   const { product } = useSelector((state) => state.bag);
-  const [count, setCount] = useState(1);
+  const navigate = useNavigate();
+  let [count, setCount] = useState(1);
+  let [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
-  console.log(product);
+  // console.log(product);
   // const navigate = useNavigate()
+  useEffect(() => {
+    dispatch(getProductBag());
+    console.log("apakah ini jalan");
+  }, [product]);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
@@ -65,16 +72,24 @@ const Bag = () => {
                             <span className="text-secondary sub-post">{item.brand}</span>
                           </td>
                           <td className="align-middle text-center">
-                            <Button backgroundColor="#d4d4d4" width="36px" height="36px" borderRadius="50%">
+                            <Button
+                              onClick={() => {
+                                item.qtyOrder <= 1 ? dispatch(deleteProdct(item.id)) : dispatch(minQty(item.id, item.qtyOrder - 1));
+                                setTotalPrice(totalPrice + item.qtyOrder * item.price);
+                              }}
+                              backgroundColor="#d4d4d4"
+                              width="36px"
+                              height="36px"
+                              borderRadius="50%"
+                            >
                               <img className="mb-2" src="./images/bag/min.png" alt="btn" />
                             </Button>
                           </td>
-                          <td className={"align-middle text-center " + styles.one}>{count}</td>
+                          <td className={"align-middle text-center " + styles.one}>{item.qtyOrder}</td>
                           <td className="align-middle text-center">
                             <Button
                               onClick={() => {
-                                setCount(count + 1);
-                                dispatch(addPlus(count));
+                                dispatch(addPlus(item.id, item.qtyOrder + 1));
                               }}
                               backgroundColor="white"
                               width="36px"
@@ -84,7 +99,7 @@ const Bag = () => {
                               <img className="mb-2" src="./images/bag/shape.png" alt="btn" />
                             </Button>
                           </td>
-                          <td className={"align-middle fw-bold"}>{item.price}</td>
+                          <td className={"align-middle fw-bold"}>{item.price * item.qtyOrder}</td>
                         </tbody>
                       </table>
                     </div>
@@ -133,11 +148,19 @@ const Bag = () => {
                   <table className="table">
                     <tbody>
                       <td className={"float start " + styles.total_price}>Total Price</td>
-                      <td className="float-end fw-bold">$21.0</td>
+                      <td className="float-end fw-bold">{totalPrice}</td>
                     </tbody>
                   </table>
                 </div>
-                <Button backgroundColor="#DB3022" color="white" borderRadius="25px" className="w-100">
+                <Button
+                  onClick={() => {
+                    navigate("/checkout");
+                  }}
+                  backgroundColor="#DB3022"
+                  color="white"
+                  borderRadius="25px"
+                  className="w-100"
+                >
                   Buy
                 </Button>
               </Card>

@@ -3,8 +3,10 @@ import Card from "../../component/base/card";
 import Navbar from "../../component/module/navbar";
 import styles from "./checkout.module.css";
 import Button from "../../component/base/Button";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const { product } = useSelector((state) => state.bag);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
@@ -21,23 +23,25 @@ const Checkout = () => {
                   Choose another Address
                 </Button>
               </Card>
-              <Card className={`${styles.card} px-5 py-3 mt-3`}>
-                <div className="table-responsive-sm">
-                  <table className="table">
-                    <tbody>
-                      <td className="float-start">
-                        <img className="img-products" src="./images/bag/jas.png" alt="fotoproduk1" />
-                      </td>
-                      <td className="align-middle float-start">
-                        <p className="fw-bold mb-1">Men's formal suit -</p>
-                        <span className="text-secondary sub-post">Zalora Cloth</span>
-                      </td>
-                      <td className={"align-middle fw-bold"}>$ 20.0</td>
-                    </tbody>
-                  </table>
-                </div>
-              </Card>
-              <Card className={`${styles.card} px-5 py-3 mt-3`}>
+              {product.map((item) => (
+                <Card className={`${styles.card} px-5 py-3 mt-3`}>
+                  <div className="table-responsive-sm">
+                    <table className="table">
+                      <tbody>
+                        <td className="float-start">
+                          <img className="img-products" src="./images/bag/jas.png" alt="fotoproduk1" />
+                        </td>
+                        <td className="align-middle float-start">
+                          <p className="fw-bold mb-1">{item.name}</p>
+                          <span className="text-secondary sub-post">{item.brand}</span>
+                        </td>
+                        <td className={"align-middle fw-bold"}>{item.brand}</td>
+                      </tbody>
+                    </table>
+                  </div>
+                </Card>
+              ))}
+              {/* <Card className={`${styles.card} px-5 py-3 mt-3`}>
                 <div className="table-responsive-sm">
                   <table className="table">
                     <tbody>
@@ -52,7 +56,7 @@ const Checkout = () => {
                     </tbody>
                   </table>
                 </div>
-              </Card>
+              </Card> */}
             </div>
             <div className="col-lg-4">
               <Card className={`${styles.card} p-3`}>
