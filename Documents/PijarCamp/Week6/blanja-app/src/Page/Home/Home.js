@@ -5,11 +5,13 @@ import styles from "./home.module.css";
 import Card from "../../component/base/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../config/redux/action/productAction";
+import { getCategory } from "../../config/redux/action/categoryAction";
 import { useNavigate, useSearchParams } from "react-router-dom";
 // import axios from "axios";
 
 const Home = () => {
   // const { search, isSearching } = useSelector((state) => state.search);
+  const { category } = useSelector((state) => state.category);
   const [search, setSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams({});
   // const [keyword, setKeyword] = useState("");
@@ -49,6 +51,7 @@ const Home = () => {
   // searchData();
 
   useEffect(() => {
+    dispatch(getCategory());
     dispatch(getData(searchParams));
     // searchData();
     console.log("useEffect jalan");
@@ -88,15 +91,17 @@ const Home = () => {
               </div>
             </div>
             <div className="row position-relative row-cols-2 row-cols-md-3 row-cols-lg-5">
-              <div className="col">
-                <div className="card align-items-center bg-danger" style={{ height: "180px" }}>
-                  <div className="card-body d-flex flex-column">
-                    <img className="img-fluid" src="./images/home/category/t-shirt.png" alt="" />
-                    <p className={styles.card_text}>T-shirt</p>
+              {category.map((item) => (
+                <div className="col">
+                  <div className="card align-items-center bg-danger" style={{ height: "180px" }}>
+                    <div className="card-body d-flex flex-column">
+                      <img className="img-fluid" src="./images/home/category/t-shirt.png" alt="" />
+                      <p className={styles.card_text}>{item.name}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col">
+              ))}
+              {/* <div className="col">
                 <div className="card bg-primary align-items-center" style={{ height: "180px" }}>
                   <div className="card-body d-flex flex-column">
                     <img className="img-fluid" src="./images/home/category/shorts.png" alt="" />
@@ -127,7 +132,7 @@ const Home = () => {
                     <p className={styles.card_text}>Shoes</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <Button className={styles.btnCategory} width="52px" height="52px" borderRadius="50%" backgroundColor="white">
                 <img src="./images/home/category/rigth.png" alt="" />
               </Button>

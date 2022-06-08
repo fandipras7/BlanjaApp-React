@@ -28,7 +28,12 @@ const Navbar = ({ className, onChange, onClickButton }) => {
   return (
     <nav className={className}>
       <div className={`container ${styles.mybar}`}>
-        <div className={`d-flex ${styles.navbar_brand}`}>
+        <div
+          onClick={() => {
+            navigate("/Home");
+          }}
+          className={`d-flex ${styles.navbar_brand}`}
+        >
           <img src={logo} alt="" width="32" height="44" class="me-2" />
           <h5 className="mt-2">Blanja</h5>
         </div>

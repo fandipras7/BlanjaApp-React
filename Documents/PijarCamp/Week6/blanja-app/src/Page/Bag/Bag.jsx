@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../component/module/navbar";
 import styles from "./bag.module.css";
 import Button from "../../component/base/Button";
 import Card from "../../component/base/card";
+import { useDispatch, useSelector } from "react-redux";
+import { addPlus } from "../../config/redux/action/bagAction";
 // import { useNavigate } from 'react-router-dom'
 
 const Bag = () => {
+  const { product } = useSelector((state) => state.bag);
+  const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
+  console.log(product);
   // const navigate = useNavigate()
   return (
     <div>
@@ -35,50 +41,62 @@ const Bag = () => {
                   </table>
                 </div>
               </div>
-              <div className="card mb-3 px-4">
-                <div className="table-responsive-sm">
-                  <table className="table">
-                    <tbody>
-                      <td className="align-middle">
-                        <div className={`${styles.check}`}>
-                          <label className={styles.customcheck + " mt-2 input"}>
-                            {/* <!-- <img className="img-products" src="../image/bag2.png"/> --> */}
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                            <span className={styles.checkmark}></span>
-                          </label>
-                        </div>
-                      </td>
-                      <td className="float-start">
-                        <img className="img-products" src="./images/bag/jas.png" alt="fotoproduk1" />
-                      </td>
-                      <td className="align-middle float-start">
-                        <p className="post mb-1">Men's formal suit -</p>
-                        <span className="text-secondary sub-post">Zalora Cloth</span>
-                      </td>
-                      <td className="align-middle text-center">
-                        <Button backgroundColor="#d4d4d4" width="36px" height="36px" borderRadius="50%">
-                          <img className="mb-2" src="./images/bag/min.png" alt="btn" />
-                        </Button>
-                      </td>
-                      <td className={"align-middle text-center " + styles.one}>1</td>
-                      <td className="align-middle text-center">
-                        <Button backgroundColor="white" width="36px" height="36px" borderRadius="50%">
-                          <img className="mb-2" src="./images/bag/shape.png" alt="btn" />
-                        </Button>
-                      </td>
-                      <td className={"align-middle fw-bold"}>$ 20.0</td>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div className="card mb-3 px-4">
+
+              {product &&
+                product.map((item) => (
+                  <div className="card mb-3 px-4">
+                    <div className="table-responsive-sm">
+                      <table className="table">
+                        <tbody>
+                          <td className="align-middle">
+                            <div className={`${styles.check}`}>
+                              <label className={styles.customcheck + " mt-2 input"}>
+                                {/* <!-- <img className="img-products" src="../image/bag2.png"/> --> */}
+                                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <span className={styles.checkmark}></span>
+                              </label>
+                            </div>
+                          </td>
+                          <td className="float-start">
+                            <img className="img-products" src="./images/bag/jas.png" alt="fotoproduk1" />
+                          </td>
+                          <td className="align-middle float-start">
+                            <p className="post mb-1">{item.name}</p>
+                            <span className="text-secondary sub-post">{item.brand}</span>
+                          </td>
+                          <td className="align-middle text-center">
+                            <Button backgroundColor="#d4d4d4" width="36px" height="36px" borderRadius="50%">
+                              <img className="mb-2" src="./images/bag/min.png" alt="btn" />
+                            </Button>
+                          </td>
+                          <td className={"align-middle text-center " + styles.one}>{count}</td>
+                          <td className="align-middle text-center">
+                            <Button
+                              onClick={() => {
+                                setCount(count + 1);
+                                dispatch(addPlus(count));
+                              }}
+                              backgroundColor="white"
+                              width="36px"
+                              height="36px"
+                              borderRadius="50%"
+                            >
+                              <img className="mb-2" src="./images/bag/shape.png" alt="btn" />
+                            </Button>
+                          </td>
+                          <td className={"align-middle fw-bold"}>{item.price}</td>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                ))}
+              {/* <div className="card mb-3 px-4">
                 <div className="table-responsive-sm">
                   <table className="table">
                     <tbody>
                       <td className="align-middle">
                         <div className={styles.check}>
                           <label className={styles.customcheck + " mt-2 input"}>
-                            {/* <!-- <img className="img-products" src="../image/bag2.png"/> --> */}
                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                             <span className={styles.checkmark}></span>
                           </label>
@@ -106,7 +124,7 @@ const Bag = () => {
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="col-lg-4 mt-3">
               <Card className={`${styles.card} ${styles.card_details}`}>

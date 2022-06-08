@@ -1,6 +1,7 @@
 const initialState = {
   product: [],
   isGeting: false,
+  detailProduct: {},
 };
 
 const productReducer = (state = initialState, action) => {
@@ -24,17 +25,22 @@ const productReducer = (state = initialState, action) => {
   } else if (action.type === "EDIT_PRODUCT") {
     return {
       ...state,
-      product: state.product.map((item)=>{
-       return item.id === action.payload.product.id ? action.payload.product : item;
-      })
-    }
-  } else if (action.type === "DELETE_PRODUCT"){
+      product: state.product.map((item) => {
+        return item.id === action.payload.product.id ? action.payload.product : item;
+      }),
+    };
+  } else if (action.type === "DELETE_PRODUCT") {
     return {
       ...state,
-      product: state.product.filter((item)=>{
-        return item.id !== action.payload.id
-      })
-    }
+      product: state.product.filter((item) => {
+        return item.id !== action.payload.id;
+      }),
+    };
+  } else if (action.type === "GET_DETAIL_SUCCESS") {
+    return {
+      ...state,
+      detailProduct: action.payload.product,
+    };
   } else {
     return state;
   }

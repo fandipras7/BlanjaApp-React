@@ -18,6 +18,22 @@ export const getData = (searchParams) => async (dispatch) => {
   }
 };
 
+export const getDataByid = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "GET_DETAIL_PENDING" });
+    const result = await axios({
+      method: "GET",
+      baseURL: "http://localhost:4000/v1",
+      url: `/products/${id}`,
+    });
+    // console.log(result.data.data[5].photo);
+    const product = result.data.data;
+    dispatch({ type: "GET_DETAIL_SUCCESS", payload: { product } });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addProduct = (dataform, navigate) => async (dispatch) => {
   try {
     const result = await axios.post("http://localhost:4000/v1/products", dataform, { "content-type": "multipart/form-data" });

@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../component/module/navbar";
 import styles from "./product.module.css";
 import Button from "../../component/base/Button";
@@ -16,30 +16,40 @@ import star1 from "./image/Star.png";
 import star2 from "./image/Star2.png";
 import minus from "./image/minus.png";
 import plus from "./image/plus.png";
+import { getDataByid } from "../../config/redux/action/productAction";
+import { useDispatch, useSelector } from "react-redux";
+import { addBag } from "../../config/redux/action/bagAction";
 
 const Product = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // console.log(id);
-  const [products, setProducts] = useState([]);
-  const photo = products.photo;
-  const rating = 5;
-  async function fetchData() {
-    try {
-      const result = await axios({
-        method: "GET",
-        baseURL: "http://localhost:4000/v1",
-        url: `/products/${id}`,
-      });
-      // console.log(result.data.data[5].photo);
-      setProducts(result.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // const [products, setProducts] = useState([]);
+  const { detailProduct } = useSelector((state) => state.product);
+  const photo = detailProduct.photo;
+  // async function fetchData() {
+  //   try {
+  //     const result = await axios({
+  //       method: "GET",
+  //       baseURL: "http://localhost:4000/v1",
+  //       url: `/products/${id}`,
+  //     });
+  //     // console.log(result.data.data[5].photo);
+  //     setProducts(result.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  const handleAddBag = (data) => {
+    dispatch(addBag(data));
+    navigate("/mybag");
+  };
 
   useEffect(() => {
-    fetchData();
-  }, [id]);
+    // fetchData();
+    dispatch(getDataByid(id));
+  }, []);
   return (
     <Fragment>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true}></Navbar>
@@ -73,8 +83,8 @@ const Product = () => {
                 </div>
               </div>
               <div className="col-12 col-lg-8 mt-5">
-                <p className="fw-bold fs-4">{products.name}</p>
-                <p className="fw-light text-success">{products.brand}</p>
+                <p className="fw-bold fs-4">{detailProduct.name}</p>
+                <p className="fw-light text-success">{detailProduct.brand}</p>
                 <div className="rating d-flex">
                   <div>
                     <img src={star2} alt="" />
@@ -98,7 +108,7 @@ const Product = () => {
                 </div>
                 <div className="price">
                   <p>Price</p>
-                  <p className="fw-bold fs-3">{products.price}</p>
+                  <p className="fw-bold fs-3">{detailProduct.price}</p>
                 </div>
                 <div className="d-flex flex-column">
                   <p className="ms-1">Color</p>
@@ -159,7 +169,13 @@ const Product = () => {
                   <button type="button" class={"btn rounded-pill mt-5 " + styles.chatBtn}>
                     Chat
                   </button>
-                  <button type="button" class={"btn rounded-pill mt-5 ms-2 " + styles.chatBtn}>
+                  <button
+                    onClick={() => {
+                      handleAddBag(detailProduct);
+                    }}
+                    type="button"
+                    class={"btn rounded-pill mt-5 ms-2 " + styles.chatBtn}
+                  >
                     Add Bag
                   </button>
                   <button type="button" class={"rounded-pill mt-5 ms-2 " + styles.buyBtn}>
@@ -176,7 +192,7 @@ const Product = () => {
             <p class="mt-5 fw-bold fs-3">Informasi Produk</p>
             <div class="mt-5">
               <p class="fw-bold fs-4">Condition</p>
-              <p class="">{products.condition}</p>
+              <p class="">{detailProduct.condition}</p>
             </div>
             <div>
               <p class="fw-bold fs-4">Description</p>
