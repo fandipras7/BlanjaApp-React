@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Bag = () => {
   const { product } = useSelector((state) => state.bag);
   const navigate = useNavigate();
-  let [count, setCount] = useState(1);
+  // let [count, setCount] = useState(1);
   let [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
   // console.log(product);
@@ -19,6 +19,7 @@ const Bag = () => {
   useEffect(() => {
     dispatch(getProductBag());
     console.log("apakah ini jalan");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product]);
   return (
     <div>

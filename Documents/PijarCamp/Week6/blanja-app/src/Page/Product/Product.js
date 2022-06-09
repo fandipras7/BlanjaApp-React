@@ -1,17 +1,17 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../component/module/navbar";
 import styles from "./product.module.css";
 import Button from "../../component/base/Button";
-import axios from "axios";
+// import axios from "axios";
 
 // images
 import mainPhoto from "./image/bajubesar.png";
-import p1 from "./image/b1.png";
-import p2 from "./image/b2.png";
-import p3 from "./image/b3.png";
-import p4 from "./image/b4.png";
-import p5 from "./image/b5.png";
+// import p1 from "./image/b1.png";
+// import p2 from "./image/b2.png";
+// import p3 from "./image/b3.png";
+// import p4 from "./image/b4.png";
+// import p5 from "./image/b5.png";
 import star1 from "./image/Star.png";
 import star2 from "./image/Star2.png";
 import minus from "./image/minus.png";
@@ -49,6 +49,7 @@ const Product = () => {
   useEffect(() => {
     // fetchData();
     dispatch(getDataByid(id));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Fragment>

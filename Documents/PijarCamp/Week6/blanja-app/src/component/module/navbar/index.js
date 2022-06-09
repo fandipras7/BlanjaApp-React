@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Navigate, NavLink, useNavigate, useSearchParams } from "react-router-dom";
+import { NavLink, useNavigate, } from "react-router-dom";
 import styles from "./navbar.module.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
@@ -7,8 +7,8 @@ import sortPic from "./img/sort.png";
 import cartPic from "./img/cart.png";
 import logo from "./img/logoBlanja.png";
 import searchImg from "./img/search.png";
-import { useDispatch, useSelector } from "react-redux";
-import { searchProduct } from "../../../config/redux/action/searchAction";
+import {  useSelector } from "react-redux";
+// import { searchProduct } from "../../../config/redux/action/searchAction";
 
 const Navbar = ({ className, onChange, onClickButton }) => {
   const navigate = useNavigate();
