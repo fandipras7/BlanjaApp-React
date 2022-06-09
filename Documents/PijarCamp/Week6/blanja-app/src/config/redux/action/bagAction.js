@@ -5,10 +5,10 @@ export const addBag = (data) => {
   };
 };
 
-export const addPlus = (dataId, dataCount, total) => {
+export const addPlus = (dataId, dataCount) => {
   return {
     type: "PLUS",
-    payload: { dataId, dataCount, total },
+    payload: { dataId, dataCount },
   };
 };
 

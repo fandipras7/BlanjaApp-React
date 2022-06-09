@@ -11,10 +11,10 @@ import searchbtn from "../image/profile/search.png";
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct } from "../../config/redux/action/productAction";
+import { deleteProduct, getData } from "../../config/redux/action/productAction";
 const MyProduct = () => {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const { product } = useSelector((state) => state.product);
   // console.log(product);
   const navigate = useNavigate();
@@ -40,7 +40,8 @@ const MyProduct = () => {
 
   useEffect(() => {
     // fetchData();
-    setProducts(product);
+    // setProducts(product);
+    dispatch(getData);
   }, [product]);
   return (
     <div>
@@ -136,14 +137,14 @@ const MyProduct = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {products.length > 0 ? (
-                              products.map((item) => (
+                            {product.length > 0 ? (
+                              product.map((item) => (
                                 <tr>
                                   <th scope="row">{item.name}</th>
                                   <td>{item.price}</td>
                                   <td>{item.stock}</td>
                                   <div className="editDelete">
-                                  <Button onClick={() => navigate(`/storeprofile/selling`)}>add</Button>
+                                    <Button onClick={() => navigate(`/storeprofile/selling`)}>add</Button>
                                     <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
                                     <Button onClick={() => dispatch(deleteProduct(item.id))}>Delete</Button>
                                   </div>
@@ -154,6 +155,24 @@ const MyProduct = () => {
                                 <p>Belum ada produk</p>
                               </div>
                             )}
+                            {/* {products.length > 0 ? (
+                              products.map((item) => (
+                                <tr>
+                                  <th scope="row">{item.name}</th>
+                                  <td>{item.price}</td>
+                                  <td>{item.stock}</td>
+                                  <div className="editDelete">
+                                    <Button onClick={() => navigate(`/storeprofile/selling`)}>add</Button>
+                                    <Button onClick={() => navigate(`/Edit/${item.id}`)}>Edit</Button>
+                                    <Button onClick={() => dispatch(deleteProduct(item.id))}>Delete</Button>
+                                  </div>
+                                </tr>
+                              ))
+                            ) : (
+                              <div>
+                                <p>Belum ada produk</p>
+                              </div>
+                            )} */}
                             {/* <tr>
                               <th scope="row">2</th>
                               <td>Jacob</td>

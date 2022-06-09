@@ -52,7 +52,7 @@ const RegisterCustomer = () => {
               <Input name="storeName" value={formRegister.storeName} onChange={handleChange} classWrapName="form-outline mb-2" type="text" id="store" className="form-control form-control-lg" placeholder="Store Name"></Input> */}
               <Input name="password" value={formRegister.password} onChange={handleChange} classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>
               <div className="d-grid">
-                <Button title="Primary" width="none" className={`btn btn-danger ${styles.btnSubmit}`}></Button>
+                <Button title="Sign Up" width="none" className={`btn btn-danger ${styles.btnSubmit}`}></Button>
               </div>
             </form>
             <p className="text-center mt-3">

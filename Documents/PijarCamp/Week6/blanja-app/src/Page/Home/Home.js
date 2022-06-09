@@ -95,7 +95,7 @@ const Home = () => {
                 <div className="col">
                   <div className="card align-items-center bg-danger" style={{ height: "180px" }}>
                     <div className="card-body d-flex flex-column">
-                      <img className="img-fluid" src="./images/home/category/t-shirt.png" alt="" />
+                      <img className="img-fluid" src="" alt="" />
                       <p className={styles.card_text}>{item.name}</p>
                     </div>
                   </div>

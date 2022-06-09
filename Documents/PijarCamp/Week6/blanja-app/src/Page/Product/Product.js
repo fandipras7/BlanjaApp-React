@@ -66,19 +66,19 @@ const Product = () => {
                 </div>
                 <div className="row row-cols-5 mt-2">
                   <div className="col">
-                    <img src={p1} className="img-fluid" alt="baju1" />
+                    <img src={photo} className="img-fluid" alt="baju1" />
                   </div>
                   <div className="col">
-                    <img src={p2} className="img-fluid" alt="baju1" />
+                    <img src={photo} className="img-fluid" alt="baju1" />
                   </div>
                   <div className={"col"}>
-                    <img src={p3} className="img-fluid" alt="baju1" />
+                    <img src={photo} className="img-fluid" alt="baju1" />
                   </div>
                   <div className="col">
-                    <img src={p4} className="img-fluid" alt="baju1" />
+                    <img src={photo} className="img-fluid" alt="baju1" />
                   </div>
                   <div className="col">
-                    <img src={p5} className="img-fluid" alt="baju1" />
+                    <img src={photo} className="img-fluid" alt="baju1" />
                   </div>
                 </div>
               </div>

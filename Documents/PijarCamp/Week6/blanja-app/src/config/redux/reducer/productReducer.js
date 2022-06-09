@@ -1,7 +1,7 @@
 const initialState = {
   product: [],
   isGeting: false,
-  detailProduct: {},
+  detailProduct: [],
 };
 
 const productReducer = (state = initialState, action) => {

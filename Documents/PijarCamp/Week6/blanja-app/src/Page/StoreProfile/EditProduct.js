@@ -51,7 +51,6 @@ const EditProduct = () => {
     });
   };
 
-
   const handleChangeNumber = (e) => {
     setDataProduct({
       ...dataProduct,

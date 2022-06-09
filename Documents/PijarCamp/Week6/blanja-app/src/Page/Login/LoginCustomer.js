@@ -49,7 +49,7 @@ const LoginCustomer = () => {
               <Input name="email" onChange={handleChange} classWrapName="form-outline mb-4" type="email" id="email" className="form-control form-control-lg" placeholder="Email"></Input>
               <Input name="password" onChange={handleChange} classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>
               <div className="d-grid">
-                <Button title="Primary" className={styles.btnSubmit} border="none"></Button>
+                <Button title="Login" className={styles.btnSubmit} border="none"></Button>
               </div>
             </form>
             <p className="text-center mt-3">
